@@ -635,22 +635,22 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         } else {
             if (Drink1Select.isSelected()) {
                 isSufficient -= drinkPrice1;
-                selectedDrink = "drinkPrice1";
+                selectedDrink = "drinksStock1";
             } else if (Drink2Select.isSelected()) {
                 isSufficient -= drinkPrice2;
-                selectedDrink = "drinkPrice2";
+                selectedDrink = "drinksStock2";
             } else if (Drink3Select.isSelected()) {
                 isSufficient -= drinkPrice3;
-                selectedDrink = "drinkPrice3";
+                selectedDrink = "drinksStock3";
             } else if (Drink4Select.isSelected()) {
                 isSufficient -= drinkPrice4;
-                selectedDrink = "drinkPrice4";
+                selectedDrink = "drinksStock4";
             } else if (Drink5Select.isSelected()) {
                 isSufficient -= drinkPrice5;
-                selectedDrink = "drinkPrice5";
+                selectedDrink = "drinksStock5";
             } else if (Drink6Select.isSelected()) {
                 isSufficient -= drinkPrice6;
-                selectedDrink = "drinkPrice6";
+                selectedDrink = "drinksStock6";
             }
 
             if (isSufficient < 0) {
