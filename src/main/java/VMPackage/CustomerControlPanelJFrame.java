@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -47,6 +48,26 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static double coinValue50 = coinStock50 * 0.5;
     public static double coinValue1 = coinStock1;
 
+//    stock & change part
+    Double remainder = null;
+
+    private void extracted(Double remainder, Double bill, List<Double> outPut) {
+
+        Double denominator = this.remainder / bill;
+        for (int i = 0; i < Math.floor(denominator); i++) {
+            outPut.add(bill);
+        }
+        this.remainder = this.remainder % bill;
+    }
+
+    public List<Double> giveChange(Double remainder) {
+        List<Double> outPut = new ArrayList<>();
+        List<Double> bills = List.of(1.00, 0.5, 0.20, 0.10);
+        bills.stream().forEach(e -> extracted(this.remainder, e, outPut));
+        return outPut;
+    }
+
+//    end of stoock part
     public static void getDrinksPrice(ArrayList<String> drinksPrices) {
         drinkPrice1 = Double.parseDouble(drinksPrices.get(1));
         drinkPrice2 = Double.parseDouble(drinksPrices.get(3));
@@ -746,22 +767,27 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     // public static double coinValue20;
                     // public static double coinValue50;
                     // public static double coinValue1;
-                    
-                    double totalVMMoney = coinValue10 + coinValue20 + coinValue50 + coinValue1;
+//                    double totalVMMoney = coinValue10 + coinValue20 + coinValue50 + coinValue1;
+                    remainder = isSufficient;
+                    List<Double> change = giveChange(isSufficient);
+                    System.out.println("== Change ==");
+                    change.forEach(System.out::println); //hena han-reduce el stock
+                    System.out.println("==Sum of change: ==");
+                    System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
 
-                    
-                //// RESET ALL
-                //// checkStorage();
-                ////// ReduceCoinStorage();
-                // TotalInserted.setText("0.00");
-                // CoinsInput.setText(" ");
-                // CoinsChange.setText(String.valueOf(isSufficient));
+//                    isSufficient.stream().reduce(0.0, (subtotal, element) -> subtotal + element) );
+                    //// RESET ALL
+                    //// checkStorage();
+                    ////// ReduceCoinStorage();
+                    // TotalInserted.setText("0.00");
+                    // CoinsInput.setText(" ");
+                    // CoinsChange.setText(String.valueOf(isSufficient));
+                }
             }
-        }    
         }
-}// GEN-LAST:event_CollectDrinkActionPerformed
+    }// GEN-LAST:event_CollectDrinkActionPerformed
 
-private void Drink2SelectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Drink2SelectActionPerformed
+    private void Drink2SelectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Drink2SelectActionPerformed
         // Enable selection of only 1 Radio Button
         if (Drink2Select.isSelected()) {
             Drink1Select.setSelected(false);
@@ -925,27 +951,23 @@ private void Drink2SelectActionPerformed(java.awt.event.ActionEvent evt) {// GEN
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class  
+            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SimulatorControlPanelJFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         // </editor-fold>
         // </editor-fold>
