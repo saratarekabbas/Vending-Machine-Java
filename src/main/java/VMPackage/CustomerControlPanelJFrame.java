@@ -57,7 +57,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public List<Double> giveChange(Double remainder) {
         List<Double> outPut = new ArrayList<>();
         List<Double> bills = List.of(1.00, 0.5, 0.20, 0.10);
-        bills.stream().forEach(e -> extracted(this.remainder, e, outPut));
+        bills.stream().forEach(e -> extracted((double) Math.round(this.remainder * 100) / 100, e, outPut));
         return outPut;
     }
 
@@ -87,22 +87,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         coinStock1 = Integer.parseInt(coinsStock.get(7));
     }
 
-    public CustomerControlPanelJFrame() {
-        initComponents();
-
-        // DISPLAY PRICE
-        getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
-
-        DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
-        DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
-        DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
-        DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
-        DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
-        DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
-
-        // GET DRINKS STOCK
-        getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
-
+    private void enableButtons() {
         if (drinkStock1 == 0) {
             stock1.enable();
             Drink1Select.setEnabled(false);
@@ -139,6 +124,62 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         } else {
             stock6.disable();
         }
+    }
+
+    public CustomerControlPanelJFrame() {
+        initComponents();
+
+        // DISPLAY PRICE
+        getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
+
+        DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
+        DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
+        DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
+        DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
+        DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
+        DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
+
+        // GET DRINKS STOCK
+        getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
+
+        enableButtons();
+
+//        if (drinkStock1 == 0) {
+//            stock1.enable();
+//            Drink1Select.setEnabled(false);
+//        } else {
+//            stock1.disable();
+//        }
+//        if (drinkStock2 == 0) {
+//            stock2.enable();
+//            Drink2Select.setEnabled(false);
+//        } else {
+//            stock2.disable();
+//        }
+//        if (drinkStock3 == 0) {
+//            stock3.enable();
+//            Drink3Select.setEnabled(false);
+//        } else {
+//            stock3.disable();
+//        }
+//        if (drinkStock4 == 0) {
+//            stock4.enable();
+//            Drink4Select.setEnabled(false);
+//        } else {
+//            stock4.disable();
+//        }
+//        if (drinkStock5 == 0) {
+//            stock5.enable();
+//            Drink5Select.setEnabled(false);
+//        } else {
+//            stock5.disable();
+//        }
+//        if (drinkStock6 == 0) {
+//            stock6.enable();
+//            Drink6Select.setEnabled(false);
+//        } else {
+//            stock6.disable();
+//        }
     }
 
     @SuppressWarnings("unchecked")
@@ -712,7 +753,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     private void CollectDrinkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CollectDrinkActionPerformed
 
-        double isSufficient = totalInsertedCoins; // a var for checking if the coins inserted are sufficient to purchase
+        double isSufficient = (double) Math.round(totalInsertedCoins * 100) / 100; // a var for checking if the coins inserted are sufficient to purchase
         // drink
         String selectedDrink = null;
 
@@ -777,8 +818,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                             coinStock10 -= 1;
                             FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
                         }
-                        
-//                        UPDATE STOCK
                     }
 
                     System.out.println("==Sum of change: ==");
@@ -788,6 +827,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     TotalInserted.setText("0.00");
                     CoinsInput.setText(" ");
                     CoinsChange.setText(String.valueOf(isSufficient));
+                    enableButtons();
                 }
             }
         }
@@ -929,7 +969,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             }
         }
 
-        DecimalFormat df = new DecimalFormat("#.##");
         totalInsertedCoins = (double) (Math.round(totalInsertedCoins * 100.0) / 100.0);
 
         TotalInserted.setText(String.valueOf(totalInsertedCoins));
@@ -1036,4 +1075,5 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel stock6;
     private javax.swing.JButton terminate;
     // End of variables declaration//GEN-END:variables
+
 }

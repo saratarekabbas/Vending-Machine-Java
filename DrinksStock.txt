@@ -3,4 +3,4 @@ drinksStock2 544
 drinksStock3 0
 drinksStock4 0
 drinksStock5 8
-drinksStock6 7
+drinksStock6 5
