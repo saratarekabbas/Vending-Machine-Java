@@ -43,16 +43,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static int coinStock50;
     public static int coinStock1;
 
-    public static double coinValue10 = coinStock10 * 0.1;
-    public static double coinValue20 = coinStock20 * 0.2;
-    public static double coinValue50 = coinStock50 * 0.5;
-    public static double coinValue1 = coinStock1;
-
 //    stock & change part
     Double remainder = null;
 
     private void extracted(Double remainder, Double bill, List<Double> outPut) {
-
         Double denominator = this.remainder / bill;
         for (int i = 0; i < Math.floor(denominator); i++) {
             outPut.add(bill);
@@ -703,17 +697,17 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }// GEN-LAST:event_CoinsInputActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ClearButtonActionPerformed
-        // Drink1Select.setSelected(false);
-        // Drink2Select.setSelected(false);
-        // Drink3Select.setSelected(false);
-        // Drink4Select.setSelected(false);
-        // Drink5Select.setSelected(false);
-        // Drink6Select.setSelected(false);
-        //
-        // insertedCoinTotal = 0;
-        // CoinsChange.setText("0.00");
-        // CoinsInput.setText(" ");
-        // TotalInserted.setText(String.valueOf(insertedCoinTotal));
+        Drink1Select.setSelected(false);
+        Drink2Select.setSelected(false);
+        Drink3Select.setSelected(false);
+        Drink4Select.setSelected(false);
+        Drink5Select.setSelected(false);
+        Drink6Select.setSelected(false);
+
+        totalInsertedCoins = 0;
+        CoinsChange.setText("0.00");
+        CoinsInput.setText(" ");
+        TotalInserted.setText(String.valueOf(totalInsertedCoins));
     }// GEN-LAST:event_ClearButtonActionPerformed
 
     private void CollectDrinkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CollectDrinkActionPerformed
@@ -763,25 +757,37 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     // public static int coinStock20;
                     // public static int coinStock50;
                     // public static int coinStock1;
-                    // public static double coinValue10;
-                    // public static double coinValue20;
-                    // public static double coinValue50;
-                    // public static double coinValue1;
-//                    double totalVMMoney = coinValue10 + coinValue20 + coinValue50 + coinValue1;
                     remainder = isSufficient;
                     List<Double> change = giveChange(isSufficient);
                     System.out.println("== Change ==");
-                    change.forEach(System.out::println); //hena han-reduce el stock
+//                    change.forEach(System.out::println); //hena han-reduce el stock
+
+                    for (int i = 0; i < change.size(); i++) {
+                        System.out.println(change.get(i));
+                        if (change.get(i) == 1.0) {
+                            coinStock1 -= 1;
+                            FileHandler.reduce("CoinStock.txt", "coinsStock1", 1);
+                        } else if (change.get(i) == 0.5) {
+                            coinStock50 -= 1;
+                            FileHandler.reduce("CoinStock.txt", "coinsStock50", 1);
+                        } else if (change.get(i) == 0.2) {
+                            coinStock20 -= 1;
+                            FileHandler.reduce("CoinStock.txt", "coinsStock20", 1);
+                        } else if (change.get(i) == 0.1) {
+                            coinStock10 -= 1;
+                            FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
+                        }
+                        
+//                        UPDATE STOCK
+                    }
+
                     System.out.println("==Sum of change: ==");
                     System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
 
-//                    isSufficient.stream().reduce(0.0, (subtotal, element) -> subtotal + element) );
-                    //// RESET ALL
-                    //// checkStorage();
-                    ////// ReduceCoinStorage();
-                    // TotalInserted.setText("0.00");
-                    // CoinsInput.setText(" ");
-                    // CoinsChange.setText(String.valueOf(isSufficient));
+                    // RESET ALL
+                    TotalInserted.setText("0.00");
+                    CoinsInput.setText(" ");
+                    CoinsChange.setText(String.valueOf(isSufficient));
                 }
             }
         }
