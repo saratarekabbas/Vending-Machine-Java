@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -143,43 +142,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
 
         enableButtons();
-
-//        if (drinkStock1 == 0) {
-//            stock1.enable();
-//            Drink1Select.setEnabled(false);
-//        } else {
-//            stock1.disable();
-//        }
-//        if (drinkStock2 == 0) {
-//            stock2.enable();
-//            Drink2Select.setEnabled(false);
-//        } else {
-//            stock2.disable();
-//        }
-//        if (drinkStock3 == 0) {
-//            stock3.enable();
-//            Drink3Select.setEnabled(false);
-//        } else {
-//            stock3.disable();
-//        }
-//        if (drinkStock4 == 0) {
-//            stock4.enable();
-//            Drink4Select.setEnabled(false);
-//        } else {
-//            stock4.disable();
-//        }
-//        if (drinkStock5 == 0) {
-//            stock5.enable();
-//            Drink5Select.setEnabled(false);
-//        } else {
-//            stock5.disable();
-//        }
-//        if (drinkStock6 == 0) {
-//            stock6.enable();
-//            Drink6Select.setEnabled(false);
-//        } else {
-//            stock6.disable();
-//        }
     }
 
     @SuppressWarnings("unchecked")
@@ -793,15 +755,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane,
                             "Item purchased successfully! Please, collect the dispensed change & drink.");
 
-                    // REDUCE COIN STOCK
-                    // public static int coinStock10;
-                    // public static int coinStock20;
-                    // public static int coinStock50;
-                    // public static int coinStock1;
                     remainder = isSufficient;
                     List<Double> change = giveChange(isSufficient);
                     System.out.println("== Change ==");
-//                    change.forEach(System.out::println); //hena han-reduce el stock
 
                     for (int i = 0; i < change.size(); i++) {
                         System.out.println(change.get(i));
@@ -827,7 +783,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     TotalInserted.setText("0.00");
                     CoinsInput.setText(" ");
                     CoinsChange.setText(String.valueOf(isSufficient));
-                    enableButtons();
+//                    enableButtons();
                 }
             }
         }
