@@ -24,4 +24,5 @@
         <maven.compiler.target>15</maven.compiler.target>
         <exec.mainClass>com.mycompany.vendingmachine.VendingMachine</exec.mainClass>
     </properties>
+    <name>VendingMachine (Updated)</name>
 </project>
