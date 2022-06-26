@@ -1,0 +1,6 @@
+drinkPrice1 15
+drinkPrice2 5
+drinkPrice3 5
+drinkPrice4 3
+drinkPrice5 55.5
+drinkPrice6 4
