@@ -31,6 +31,48 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static double drinkPrice4;
     public static double drinkPrice5;
     public static double drinkPrice6;
+    
+    public static int drinkStock1;
+    public static int drinkStock2;
+    public static int drinkStock3;
+    public static int drinkStock4;
+    public static int drinkStock5;
+    public static int drinkStock6;
+
+    public static int coinStock10;
+    public static int coinStock20;
+    public static int coinStock50;
+    public static int coinStock1;
+
+    public static double coinValue10;
+    public static double coinValue20;
+    public static double coinValue50;
+    public static double coinValue1;
+    
+    public static void getDrinksPrice(ArrayList<String> drinksPrices) {
+        drinkPrice1 = Double.parseDouble(drinksPrices.get(1));
+        drinkPrice2 = Double.parseDouble(drinksPrices.get(3));
+        drinkPrice3 = Double.parseDouble(drinksPrices.get(5));
+        drinkPrice4 = Double.parseDouble(drinksPrices.get(7));
+        drinkPrice5 = Double.parseDouble(drinksPrices.get(9));
+        drinkPrice6 = Double.parseDouble(drinksPrices.get(11));
+    }
+
+    public static void getDrinksStock(ArrayList<String> drinksStock) {
+        drinkStock1 = Integer.parseInt(drinksStock.get(1));
+        drinkStock2 = Integer.parseInt(drinksStock.get(3));
+        drinkStock3 = Integer.parseInt(drinksStock.get(5));
+        drinkStock4 = Integer.parseInt(drinksStock.get(7));
+        drinkStock5 = Integer.parseInt(drinksStock.get(9));
+        drinkStock6 = Integer.parseInt(drinksStock.get(11));
+    }
+
+    public static void getCoinsStock(ArrayList<String> coinsStock) {
+        coinStock10 = Integer.parseInt(coinsStock.get(1));
+        coinStock20 = Integer.parseInt(coinsStock.get(3));
+        coinStock50 = Integer.parseInt(coinsStock.get(5));
+        coinStock1 = Integer.parseInt(coinsStock.get(7));
+    }
 
     public CustomerControlPanelJFrame() {
         initComponents();
