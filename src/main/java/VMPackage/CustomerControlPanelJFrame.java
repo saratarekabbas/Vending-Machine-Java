@@ -77,6 +77,15 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public CustomerControlPanelJFrame() {
         initComponents();
         
+        // DISPLAY PRICE
+        getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
+
+        DrinkBrand1Price.setText(String.valueOf(drinkPrice1));
+        DrinkBrand2Price.setText(String.valueOf(drinkPrice2));
+        DrinkBrand3Price.setText(String.valueOf(drinkPrice3));
+        DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
+        DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
+        DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
     }
 
     @SuppressWarnings("unchecked")
