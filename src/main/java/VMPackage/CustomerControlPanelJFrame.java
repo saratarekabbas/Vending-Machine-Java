@@ -31,8 +31,8 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static double drinkPrice4;
     public static double drinkPrice5;
     public static double drinkPrice6;
-    
-     public static int drinkStock1;
+
+    public static int drinkStock1;
     public static int drinkStock2;
     public static int drinkStock3;
     public static int drinkStock4;
@@ -49,7 +49,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static double coinValue50;
     public static double coinValue1;
 
-     public static void getDrinksPrice(ArrayList<String> drinksPrices) {
+    public static void getDrinksPrice(ArrayList<String> drinksPrices) {
         drinkPrice1 = Double.parseDouble(drinksPrices.get(1));
         drinkPrice2 = Double.parseDouble(drinksPrices.get(3));
         drinkPrice3 = Double.parseDouble(drinksPrices.get(5));
@@ -73,10 +73,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         coinStock50 = Integer.parseInt(coinsStock.get(5));
         coinStock1 = Integer.parseInt(coinsStock.get(7));
     }
-    
+
     public CustomerControlPanelJFrame() {
         initComponents();
-        
+
         // DISPLAY PRICE
         getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
 
@@ -86,7 +86,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         DrinkBrand4Price.setText(String.valueOf(drinkPrice4));
         DrinkBrand5Price.setText(String.valueOf(drinkPrice5));
         DrinkBrand6Price.setText(String.valueOf(drinkPrice6));
-        
+
         //         GET DRINKS STOCK
         getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
 
@@ -703,7 +703,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Item purchased successfully! Please, collect the dispensed change & drink.");
 
                     // REDUCE COIN STOCK
-                    
 //                    String coinstomoney10 = String.valueOf(Double.parseDouble(coinStockList.get(1)) * 0.1);
 //                    String coinstomoney20 = String.valueOf(Double.parseDouble(coinStockList.get(3)) * 0.2);
 //                    String coinstomoney50 = String.valueOf(Double.parseDouble(coinStockList.get(5)) * 0.5);
@@ -716,8 +715,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 //                    String wholeNumber = String.valueOf(isSufficient.substring(0, isSufficient.indexOf("."))); //123
 //                    String fractionNumber = String.valueOf(isSufficient.substring(doubleAsString.indexOf(".") + 1)); //456
 //                    
-
-
 //                    1. CALCULATIONS TO KNOW WHICH TO REDUCE
 //                    
 //                    try {
