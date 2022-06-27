@@ -588,7 +588,6 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
             DrinkStock6.setText(String.valueOf(drinksStockList.get(11)));
 
         } catch (FileNotFoundException e) {
-
             System.out.println("An error occurred.");
             e.printStackTrace();
 

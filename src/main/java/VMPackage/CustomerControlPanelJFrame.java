@@ -727,22 +727,22 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "No/Not enough money was inserted. Please, insert money.");
             } else {
                 if (Drink1Select.isSelected()) {
-                    isSufficient -= drinkPrice1;
+                    isSufficient -= (double) Math.round(drinkPrice1 * 100) / 100;
                     selectedDrink = "drinksStock1";
                 } else if (Drink2Select.isSelected()) {
-                    isSufficient -= drinkPrice2;
+                    isSufficient -= (double) Math.round(drinkPrice2 * 100) / 100;;
                     selectedDrink = "drinksStock2";
                 } else if (Drink3Select.isSelected()) {
-                    isSufficient -= drinkPrice3;
+                    isSufficient -= (double) Math.round(drinkPrice3 * 100) / 100;;
                     selectedDrink = "drinksStock3";
                 } else if (Drink4Select.isSelected()) {
-                    isSufficient -= drinkPrice4;
+                    isSufficient -= (double) Math.round(drinkPrice4 * 100) / 100;;
                     selectedDrink = "drinksStock4";
                 } else if (Drink5Select.isSelected()) {
-                    isSufficient -= drinkPrice5;
+                    isSufficient -= (double) Math.round(drinkPrice5 * 100) / 100;;
                     selectedDrink = "drinksStock5";
                 } else if (Drink6Select.isSelected()) {
-                    isSufficient -= drinkPrice6;
+                    isSufficient -= (double) Math.round(drinkPrice6 * 100) / 100;;
                     selectedDrink = "drinksStock6";
                 }
 
@@ -786,8 +786,8 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                         // RESET ALL
                         TotalInserted.setText("0.00");
                         CoinsInput.setText(" ");
-                        CoinsChange.setText(String.valueOf(isSufficient));
-//                    enableButtons();
+                        CoinsChange.setText(String.valueOf((double) Math.round(isSufficient * 100) / 100));
+//                        new CustomerControlPanelJFrame().enableButtons();
                     }
                 }
             }
