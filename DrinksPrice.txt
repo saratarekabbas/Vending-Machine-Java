@@ -1,6 +1,6 @@
-drinkPrice1 15
-drinkPrice2 5
-drinkPrice3 5
-drinkPrice4 3
-drinkPrice5 55.5
-drinkPrice6 4
+drinkPrice1 0
+drinkPrice2 1.50
+drinkPrice3 3.00
+drinkPrice4 3.20
+drinkPrice5 20.00
+drinkPrice6 5.00

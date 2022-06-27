@@ -200,11 +200,9 @@ public class SimulatorControlPanelJFrame extends javax.swing.JFrame {
         ActivateCustomerButton.setEnabled(true);
         ActivateMaintainerButton.setEnabled(true);
         ActivateMachineryButton.setEnabled(true);
-
     }//GEN-LAST:event_BeginSimulationButtonActionPerformed
 
     private void ActivateMachineryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivateMachineryButtonActionPerformed
-
         MachinerySimulationControlPanelJFrame mscpJF = new MachinerySimulationControlPanelJFrame();
         mscpJF.show(); //display jframe MachinerySimulationControlPanelJFrame here
     }//GEN-LAST:event_ActivateMachineryButtonActionPerformed

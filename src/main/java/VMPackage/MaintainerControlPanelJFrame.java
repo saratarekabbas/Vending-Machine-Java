@@ -1,6 +1,5 @@
 package VMPackage;
 
-import VMPackage.SimulatorControlPanelJFrame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -701,7 +700,7 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-            
+
             DrinkStock1.setText("0");
             DrinkStock2.setText("0");
             DrinkStock3.setText("0");
@@ -709,13 +708,6 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             DrinkStock5.setText("0");
             DrinkStock6.setText("0");
         }
-
-//        DrinkStock1.setText(String.valueOf(drinkstock1));
-//        DrinkStock2.setText(String.valueOf(drinkstock2));
-//        DrinkStock3.setText(String.valueOf(drinkstock3));
-//        DrinkStock4.setText(String.valueOf(drinkstock4));
-//        DrinkStock5.setText(String.valueOf(drinkstock5));
-//        DrinkStock6.setText(String.valueOf(drinkstock6));
     }//GEN-LAST:event_DisplayDrinksStockActionPerformed
 
     private void CollectAllCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectAllCashActionPerformed
@@ -726,38 +718,22 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             totalCash = 0;
             TotalCash.setText(String.valueOf(totalCash));
             CoinStock.setText("?");
-            
-            
 
-//        RESET THE QUANTITY TO 0 IN THE FILE
-try {
-            FileWriter myWriter = new FileWriter("CoinStock.txt");
-            myWriter.write(
-                    "coinsStock10 " + 0
-                    + "\ncoinsStock20 " + 0
-                    + "\ncoinsStock50 " + 0
-                    + "\ncoinsStock1 " + 0
-            );
-            myWriter.close();
-            System.out.println("Successfully reset stock of coins in CoinStock.txt file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-
-//        RESET THE QUANTITY TO 0 IN MAINTAINER
-//            coinstock10 = 0;
-//            coinstock20 = 0;
-//            coinstock50 = 0;
-//            coinstock1 = 0;
-
-//        RESET THE QUANTITY TO 0 IN CONTROLLER
-//            MachinerySimulationControlPanelJFrame controller = new MachinerySimulationControlPanelJFrame(coinstock10, coinstock20, coinstock50, coinstock1);
-//            controller.setCoin10(coinstock10);
-//            controller.setCoin20(coinstock20);
-//            controller.setCoin50(coinstock50);
-//            controller.setCoin1(coinstock1);
+            //        RESET THE QUANTITY TO 0 IN THE FILE
+            try {
+                FileWriter myWriter = new FileWriter("CoinStock.txt");
+                myWriter.write(
+                        "coinsStock10 " + 0
+                        + "\ncoinsStock20 " + 0
+                        + "\ncoinsStock50 " + 0
+                        + "\ncoinsStock1 " + 0
+                );
+                myWriter.close();
+                System.out.println("Successfully reset stock of coins in CoinStock.txt file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_CollectAllCashActionPerformed
 
@@ -801,7 +777,6 @@ try {
     }//GEN-LAST:event_GetNewDrink6PriceActionPerformed
 
     private void UpdateDrinksPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateDrinksPriceActionPerformed
-
         //    GET TEXT FROM INPUT FIELD
         drinkPrice1 = GetNewDrink1Price.getText();
         drinkPrice2 = GetNewDrink2Price.getText();
@@ -828,15 +803,6 @@ try {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
-//     PASS THE VALUES TO THE CUSTOMER STOCK PANEL
-//        CustomerControlPanelJFrame customer = new CustomerControlPanelJFrame(drinkPrice1, drinkPrice2, drinkPrice3, drinkPrice4, drinkPrice5, drinkPrice6);
-//        customer.setPrice1(drinkPrice1);
-//        customer.setPrice2(drinkPrice2);
-//        customer.setPrice3(drinkPrice3);
-//        customer.setPrice4(drinkPrice4);
-//        customer.setPrice5(drinkPrice5);
-//        customer.setPrice6(drinkPrice6);
         JOptionPane.showMessageDialog(rootPane, "Price Updated Successfully!");
     }//GEN-LAST:event_UpdateDrinksPriceActionPerformed
 
@@ -897,13 +863,11 @@ try {
                 coinsStockList.add(myReader.next());
             }
             myReader.close();
-
             CoinStock.setText(String.valueOf(coinsStockList.get(1)));
-
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-            
+
             CoinStock.setText("0");
         }
 
@@ -918,13 +882,10 @@ try {
                 coinsStockList.add(myReader.next());
             }
             myReader.close();
-
             CoinStock.setText(String.valueOf(coinsStockList.get(3)));
-
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-            
             CoinStock.setText("0");
         }
     }//GEN-LAST:event_totaldenomination20ActionPerformed
@@ -938,7 +899,6 @@ try {
                 coinsStockList.add(myReader.next());
             }
             myReader.close();
-
             CoinStock.setText(String.valueOf(coinsStockList.get(5)));
 
         } catch (FileNotFoundException e) {
@@ -955,7 +915,6 @@ try {
             ArrayList<String> coinStockList = new ArrayList<String>();
             while (myReader.hasNext()) {
                 coinStockList.add(myReader.next());
-
             }
             myReader.close();
 
@@ -963,12 +922,10 @@ try {
             double coinstomoney20 = Double.parseDouble(coinStockList.get(3)) * 0.2;
             double coinstomoney50 = Double.parseDouble(coinStockList.get(5)) * 0.5;
             double coinstomoney1 = Double.parseDouble(coinStockList.get(1)) * 1;
-        totalCash = coinstomoney10 + coinstomoney20 + coinstomoney50 + coinstomoney1;
-        TotalCash.setText(String.valueOf(totalCash));
-
+            totalCash = coinstomoney10 + coinstomoney20 + coinstomoney50 + coinstomoney1;
+            TotalCash.setText(String.valueOf(totalCash));
         } catch (FileNotFoundException e) {
-             TotalCash.setText("0");
-            
+            TotalCash.setText("0");
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
