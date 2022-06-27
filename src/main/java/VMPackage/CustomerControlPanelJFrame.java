@@ -717,73 +717,78 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         double isSufficient = (double) Math.round(totalInsertedCoins * 100) / 100; // a var for checking if the coins inserted are sufficient to purchase
         // drink
-        String selectedDrink = null;
-
-        if (isSufficient <= 0) {
-            JOptionPane.showMessageDialog(rootPane, "No/Not enough money was inserted. Please, insert money.");
+        if (Drink1Select.isSelected() == false && Drink2Select.isSelected() == false && Drink3Select.isSelected() == false && Drink4Select.isSelected() == false && Drink5Select.isSelected() == false && Drink6Select.isSelected() == false) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Please, make a selection.");
         } else {
-            if (Drink1Select.isSelected()) {
-                isSufficient -= drinkPrice1;
-                selectedDrink = "drinksStock1";
-            } else if (Drink2Select.isSelected()) {
-                isSufficient -= drinkPrice2;
-                selectedDrink = "drinksStock2";
-            } else if (Drink3Select.isSelected()) {
-                isSufficient -= drinkPrice3;
-                selectedDrink = "drinksStock3";
-            } else if (Drink4Select.isSelected()) {
-                isSufficient -= drinkPrice4;
-                selectedDrink = "drinksStock4";
-            } else if (Drink5Select.isSelected()) {
-                isSufficient -= drinkPrice5;
-                selectedDrink = "drinksStock5";
-            } else if (Drink6Select.isSelected()) {
-                isSufficient -= drinkPrice6;
-                selectedDrink = "drinksStock6";
-            }
+            String selectedDrink = null;
 
-            if (isSufficient < 0) {
-                JOptionPane.showMessageDialog(rootPane, "Insufficient Funds. Please, insert more money");
-            } else if (isSufficient == 0 || isSufficient > 0) { // aka, successful
-                // Reduce stock by 1 from the selected drink
-                FileHandler.reduce("DrinksStock.txt", selectedDrink, 1);
+            if (isSufficient <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "No/Not enough money was inserted. Please, insert money.");
+            } else {
+                if (Drink1Select.isSelected()) {
+                    isSufficient -= drinkPrice1;
+                    selectedDrink = "drinksStock1";
+                } else if (Drink2Select.isSelected()) {
+                    isSufficient -= drinkPrice2;
+                    selectedDrink = "drinksStock2";
+                } else if (Drink3Select.isSelected()) {
+                    isSufficient -= drinkPrice3;
+                    selectedDrink = "drinksStock3";
+                } else if (Drink4Select.isSelected()) {
+                    isSufficient -= drinkPrice4;
+                    selectedDrink = "drinksStock4";
+                } else if (Drink5Select.isSelected()) {
+                    isSufficient -= drinkPrice5;
+                    selectedDrink = "drinksStock5";
+                } else if (Drink6Select.isSelected()) {
+                    isSufficient -= drinkPrice6;
+                    selectedDrink = "drinksStock6";
+                }
 
-                if (isSufficient == 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Item purchased successfully! Please, collect the dispensed drink.");
-                } else if (isSufficient > 0) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Item purchased successfully! Please, collect the dispensed change & drink.");
+                if (isSufficient < 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Insufficient Funds. Please, insert more money");
+                } else if (isSufficient == 0 || isSufficient > 0) { // aka, successful
+                    // Reduce stock by 1 from the selected drink
+                    FileHandler.reduce("DrinksStock.txt", selectedDrink, 1);
 
-                    remainder = isSufficient;
-                    List<Double> change = giveChange(isSufficient);
-                    System.out.println("== Change ==");
+                    if (isSufficient == 0) {
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Item purchased successfully! Please, collect the dispensed drink.");
+                    } else if (isSufficient > 0) {
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Item purchased successfully! Please, collect the dispensed change & drink.");
 
-                    for (int i = 0; i < change.size(); i++) {
-                        System.out.println(change.get(i));
-                        if (change.get(i) == 1.0) {
-                            coinStock1 -= 1;
-                            FileHandler.reduce("CoinStock.txt", "coinsStock1", 1);
-                        } else if (change.get(i) == 0.5) {
-                            coinStock50 -= 1;
-                            FileHandler.reduce("CoinStock.txt", "coinsStock50", 1);
-                        } else if (change.get(i) == 0.2) {
-                            coinStock20 -= 1;
-                            FileHandler.reduce("CoinStock.txt", "coinsStock20", 1);
-                        } else if (change.get(i) == 0.1) {
-                            coinStock10 -= 1;
-                            FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
+                        remainder = isSufficient;
+                        List<Double> change = giveChange(isSufficient);
+                        System.out.println("== Change ==");
+
+                        for (int i = 0; i < change.size(); i++) {
+                            System.out.println(change.get(i));
+                            if (change.get(i) == 1.0) {
+                                coinStock1 -= 1;
+                                FileHandler.reduce("CoinStock.txt", "coinsStock-1", 1);
+                            } else if (change.get(i) == 0.5) {
+                                coinStock50 -= 1;
+                                FileHandler.reduce("CoinStock.txt", "coinsStock50", 1);
+                            } else if (change.get(i) == 0.2) {
+                                coinStock20 -= 1;
+                                FileHandler.reduce("CoinStock.txt", "coinsStock20", 1);
+                            } else if (change.get(i) == 0.1) {
+                                coinStock10 -= 1;
+                                FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
+                            }
                         }
-                    }
 
-                    System.out.println("==Sum of change: ==");
-                    System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
+                        System.out.println("==Sum of change: ==");
+                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
 
-                    // RESET ALL
-                    TotalInserted.setText("0.00");
-                    CoinsInput.setText(" ");
-                    CoinsChange.setText(String.valueOf(isSufficient));
+                        // RESET ALL
+                        TotalInserted.setText("0.00");
+                        CoinsInput.setText(" ");
+                        CoinsChange.setText(String.valueOf(isSufficient));
 //                    enableButtons();
+                    }
                 }
             }
         }
@@ -873,14 +878,14 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             updateStock = "coinsStock50";
             totalInsertedCoins += 0.5;
         } else if (insertedCoin == 1) {
-            updateStock = "coinsStock1";
+            updateStock = "coinsStock-1";
             totalInsertedCoins += 1;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please, insert valid money (0.10 / 0.20 / 0.50 / 1)");
         }
 
         if (updateStock == "coinsStock10" || updateStock == "coinsStock20" || updateStock == "coinsStock50"
-                || updateStock == "coinsStock1") {
+                || updateStock == "coinsStock-1") {
             try {
                 File originalFile = new File("CoinStock.txt");
                 BufferedReader br = new BufferedReader(new FileReader(originalFile));

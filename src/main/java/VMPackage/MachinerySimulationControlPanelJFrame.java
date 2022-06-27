@@ -629,23 +629,6 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-//      PASS THE VALUES TO THE MAINTAINER STOCK PANEL
-//        MaintainerControlPanelJFrame maintainer = new MaintainerControlPanelJFrame(drinksStock1, drinksStock2, drinksStock3, drinksStock4, drinksStock5, drinksStock6);
-//        maintainer.setDrinks1(drinksStock1);
-//        maintainer.setDrinks2(drinksStock2);
-//        maintainer.setDrinks3(drinksStock3);
-//        maintainer.setDrinks4(drinksStock4);
-//        maintainer.setDrinks5(drinksStock5);
-//        maintainer.setDrinks6(drinksStock6);
-//      PASS THE VALUES TO THE CUSTOMER STOCK PANEL
-//    Elmoshkela hena enni 3ayza a3mel constructor a-pass beeh el data badal ma tkoun price tkoun stock, bas 3ashan el etneen 6 parameters string mesh rady. Bokra ba2a ARGH
-//        CustomerControlPanelJFrame customer = new CustomerControlPanelJFrame(drinksStock1, drinksStock2, drinksStock3, drinksStock4, drinksStock5, drinksStock6);
-//        customer.setDrinks1(drinksStock1);
-//        customer.setDrinks2(drinksStock2);
-//        customer.setDrinks3(drinksStock3);
-//        customer.setDrinks4(drinksStock4);
-//        customer.setDrinks5(drinksStock5);
-//        customer.setDrinks6(drinksStock6);
         JOptionPane.showMessageDialog(rootPane, "Drinks Stock updated successfully!");
     }//GEN-LAST:event_UpdateDrinksStockButtonActionPerformed
 
@@ -691,7 +674,7 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
                     "coinsStock10 " + coinsStock10
                     + "\ncoinsStock20 " + coinsStock20
                     + "\ncoinsStock50 " + coinsStock50
-                    + "\ncoinsStock1 " + coinsStock1
+                    + "\ncoinsStock-1 " + coinsStock1
             );
             myWriter.close();
             System.out.println("Successfully wrote to CoinStock.txt file.");

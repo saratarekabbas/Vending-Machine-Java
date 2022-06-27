@@ -18,7 +18,7 @@ import java.util.Scanner;
  * @author Sara
  */
 public class FileHandler {
-
+    
 //    Method to read file
     public static ArrayList<String> readFile(String filename) {
         

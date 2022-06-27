@@ -146,26 +146,6 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
         GetNewDrink6Price.setEnabled(false);
     }
 
-    MaintainerControlPanelJFrame(int drinksStock1, int drinksStock2, int drinksStock3, int drinksStock4, int drinksStock5, int drinksStock6) {
-        initComponents();
-
-        drinkstock1 = drinksStock1;
-        drinkstock2 = drinksStock2;
-        drinkstock3 = drinksStock3;
-        drinkstock4 = drinksStock4;
-        drinkstock5 = drinksStock5;
-        drinkstock6 = drinksStock6;
-    }
-
-    MaintainerControlPanelJFrame(int coinsStock10, int coinsStock20, int coinsStock50, int coinsStock1) {
-        initComponents();
-
-        coinstock10 = coinsStock10;
-        coinstock20 = coinsStock20;
-        coinstock50 = coinsStock50;
-        coinstock1 = coinsStock1;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -686,7 +666,6 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             ArrayList<String> drinksStockList = new ArrayList<String>();
             while (myReader.hasNext()) {
                 drinksStockList.add(myReader.next());
-
             }
             myReader.close();
 
@@ -726,7 +705,7 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
                         "coinsStock10 " + 0
                         + "\ncoinsStock20 " + 0
                         + "\ncoinsStock50 " + 0
-                        + "\ncoinsStock1 " + 0
+                        + "\ncoinsStock-1 " + 0
                 );
                 myWriter.close();
                 System.out.println("Successfully reset stock of coins in CoinStock.txt file.");
@@ -921,7 +900,7 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             double coinstomoney10 = Double.parseDouble(coinStockList.get(1)) * 0.1;
             double coinstomoney20 = Double.parseDouble(coinStockList.get(3)) * 0.2;
             double coinstomoney50 = Double.parseDouble(coinStockList.get(5)) * 0.5;
-            double coinstomoney1 = Double.parseDouble(coinStockList.get(1)) * 1;
+            double coinstomoney1 = Double.parseDouble(coinStockList.get(7)) * 1;
             totalCash = coinstomoney10 + coinstomoney20 + coinstomoney50 + coinstomoney1;
             TotalCash.setText(String.valueOf(totalCash));
         } catch (FileNotFoundException e) {
