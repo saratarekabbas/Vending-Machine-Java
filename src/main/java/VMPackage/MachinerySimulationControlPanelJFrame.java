@@ -8,9 +8,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import VMPackage.JavaChecker;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -609,8 +611,8 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         drinksStock5 = Integer.parseInt(NewDrinkStock5.getText());
         drinksStock6 = Integer.parseInt(NewDrinkStock6.getText());
 
-//      FILES
-//      WRITE VALUES INSERTED INTO THE DrinksStock.txt file
+//        if (JavaChecker.isWhole(NewDrinkStock1.getText()) == true) {
+        //            if (drinksStock1 >= 0 && drinksStock1 <= 20) {
         try {
             FileWriter myWriter = new FileWriter("DrinksStock.txt");
             myWriter.write(
@@ -627,8 +629,10 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
         JOptionPane.showMessageDialog(rootPane, "Drinks Stock updated successfully!");
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, "Please insert a valid stock value: 0->20 only");
+//            }
     }//GEN-LAST:event_UpdateDrinksStockButtonActionPerformed
 
     private void DisplayCoinsStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayCoinsStockButtonActionPerformed
