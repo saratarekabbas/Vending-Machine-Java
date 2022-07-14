@@ -1,5 +1,7 @@
 package VMPackage;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -87,12 +89,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }
 
     private void enableButtons() {
-        
-        CoinsInvalid.disable();
-        
+        InvalidCoins.disable();
         NoChangeAvailable.disable();
-        
-        
+
         if (drinkStock1 == 0) {
             stock1.enable();
             Drink1Select.setEnabled(false);
@@ -130,10 +129,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             stock6.disable();
         }
     }
-    
+
     public CustomerControlPanelJFrame() {
         initComponents();
-
         // DISPLAY PRICE
         getDrinksPrice(FileHandler.readFile("DrinksPrice.txt"));
 
@@ -146,7 +144,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         // GET DRINKS STOCK
         getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
-
+        getCoinsStock(FileHandler.readFile("CoinStock.txt"));
         enableButtons();
     }
 
@@ -200,7 +198,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         CollectDrink2 = new javax.swing.JButton();
-        CoinsInvalid = new javax.swing.JLabel();
+        InvalidCoins = new javax.swing.JLabel();
         NoChangeAvailable = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -542,12 +540,12 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CoinsInvalid.setBackground(new java.awt.Color(153, 153, 153));
-        CoinsInvalid.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CoinsInvalid.setForeground(new java.awt.Color(255, 0, 51));
-        CoinsInvalid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CoinsInvalid.setText("COINS NOT VALID");
-        CoinsInvalid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        InvalidCoins.setBackground(new java.awt.Color(153, 153, 153));
+        InvalidCoins.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        InvalidCoins.setForeground(new java.awt.Color(255, 0, 51));
+        InvalidCoins.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        InvalidCoins.setText("COINS NOT VALID");
+        InvalidCoins.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         NoChangeAvailable.setBackground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -578,7 +576,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                         .addComponent(Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CoinsInvalid, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(InvalidCoins, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                             .addComponent(TotalInserted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -592,7 +590,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(CoinsInvalid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(InvalidCoins, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,13 +606,13 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     .addComponent(TotalInserted, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NoChangeAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NoChangeAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -654,26 +652,13 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CollectCashActionPerformed
 
     private void CollectDrink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectDrink2ActionPerformed
-        // TODO add your handling code here:
+        // If purchase is successful, then Drink X has been collected
     }//GEN-LAST:event_CollectDrink2ActionPerformed
 
     private void CoinsInputActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CoinsInputActionPerformed
         // N/A
-    }// GEN-LAST:event_CoinsInputActionPerformed
-
-    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ClearButtonActionPerformed
-        Drink1Select.setSelected(false);
-        Drink2Select.setSelected(false);
-        Drink3Select.setSelected(false);
-        Drink4Select.setSelected(false);
-        Drink5Select.setSelected(false);
-        Drink6Select.setSelected(false);
-
-        totalInsertedCoins = 0;
-//      HOHO  CoinsChange.setText("0.00");
-        CoinsInput.setText(" ");
-        TotalInserted.setText(String.valueOf(totalInsertedCoins));
-    }// GEN-LAST:event_ClearButtonActionPerformed
+    }
+    // GEN-LAST:event_CoinsInputActionPerformed
 
     private void CollectDrinkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CollectDrinkActionPerformed
 
@@ -681,12 +666,12 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         // drink
         if (Drink1Select.isSelected() == false && Drink2Select.isSelected() == false && Drink3Select.isSelected() == false && Drink4Select.isSelected() == false && Drink5Select.isSelected() == false && Drink6Select.isSelected() == false) {
             JOptionPane.showMessageDialog(rootPane,
-                    "Please, make a selection.");
+                    "Please, make a drinks selection.");
         } else {
             String selectedDrink = null;
 
             if (isSufficient <= 0) {
-                JOptionPane.showMessageDialog(rootPane, "No/Not enough money was inserted. Please, insert money.");
+                JOptionPane.showMessageDialog(rootPane, "No/Not enough money was inserted. Please, insert more money.");
             } else {
                 if (Drink1Select.isSelected()) {
                     isSufficient -= (double) Math.round(drinkPrice1 * 100) / 100;
@@ -718,12 +703,18 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane,
                                 "Item purchased successfully! Please, collect the dispensed drink.");
                     } else if (isSufficient > 0) {
+                        getCoinsStock(FileHandler.readFile("CoinStock.txt"));
+                        if (coinStock1 + coinStock20 + coinStock10 + coinStock50 < isSufficient) {
+                            NoChangeAvailable.enable();
+                            NoChangeAvailable.setForeground(Color.RED);
+                        }
+                    } else {
                         JOptionPane.showMessageDialog(rootPane,
                                 "Item purchased successfully! Please, collect the dispensed change & drink.");
 
                         remainder = isSufficient;
                         List<Double> change = giveChange(isSufficient);
-                        System.out.println("== Change ==");
+//                        System.out.println("== Change ==");
 
                         for (int i = 0; i < change.size(); i++) {
                             System.out.println(change.get(i));
@@ -742,12 +733,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                             }
                         }
 
-                        System.out.println("==Sum of change: ==");
-                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
-
+//                        System.out.println("==Sum of change: ==");
+//                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
                         // RESET ALL
-                        TotalInserted.setText("0.00");
-                        CoinsInput.setText(" ");
+                        CoinsInput.setText("0.00");
 //                        HOHO: CoinsChange.setText(String.valueOf((double) Math.round(isSufficient * 100) / 100));
 //                        new CustomerControlPanelJFrame().enableButtons();
                     }
@@ -831,19 +820,29 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         String updateStock = null;
 
         if (insertedCoin == 0.1) {
+            InvalidCoins.enable();
+            InvalidCoins.setForeground(Color.GRAY);
             totalInsertedCoins += 0.1;
             updateStock = "coinsStock10";
         } else if (insertedCoin == 0.2) {
+            InvalidCoins.enable();
+            InvalidCoins.setForeground(Color.GRAY);
             updateStock = "coinsStock20";
             totalInsertedCoins += 0.2;
         } else if (insertedCoin == 0.5) {
+            InvalidCoins.enable();
+            InvalidCoins.setForeground(Color.GRAY);
             updateStock = "coinsStock50";
             totalInsertedCoins += 0.5;
         } else if (insertedCoin == 1) {
+            InvalidCoins.enable();
+            InvalidCoins.setForeground(Color.GRAY);
             updateStock = "coinsStock-1";
             totalInsertedCoins += 1;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please, insert valid money (0.10 / 0.20 / 0.50 / 1)");
+            InvalidCoins.enable();
+            InvalidCoins.setForeground(Color.RED);
         }
 
         if (updateStock == "coinsStock10" || updateStock == "coinsStock20" || updateStock == "coinsStock50"
@@ -950,7 +949,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CoinsInput;
-    private javax.swing.JLabel CoinsInvalid;
     private javax.swing.JButton CollectCash;
     private javax.swing.JButton CollectDrink;
     private javax.swing.JButton CollectDrink2;
@@ -973,6 +971,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel DrinkBrand6;
     public javax.swing.JLabel DrinkBrand6Price;
     private javax.swing.JButton Insert;
+    private javax.swing.JLabel InvalidCoins;
     private javax.swing.JLabel NoChangeAvailable;
     private javax.swing.JLabel TotalInserted;
     private javax.swing.JLabel jLabel1;

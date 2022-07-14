@@ -1,0 +1,6 @@
+drinksStock1 0
+drinksStock2 1
+drinksStock3 0
+drinksStock4 1
+drinksStock5 1
+drinksStock6 1
