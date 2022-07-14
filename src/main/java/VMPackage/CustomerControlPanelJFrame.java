@@ -87,6 +87,12 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }
 
     private void enableButtons() {
+        
+        CoinsInvalid.disable();
+        
+        NoChangeAvailable.disable();
+        
+        
         if (drinkStock1 == 0) {
             stock1.enable();
             Drink1Select.setEnabled(false);
@@ -124,7 +130,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             stock6.disable();
         }
     }
-
+    
     public CustomerControlPanelJFrame() {
         initComponents();
 
@@ -194,8 +200,8 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         CollectDrink2 = new javax.swing.JButton();
-        InvalidCoins1 = new javax.swing.JLabel();
-        InvalidCoins2 = new javax.swing.JLabel();
+        CoinsInvalid = new javax.swing.JLabel();
+        NoChangeAvailable = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -536,19 +542,19 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        InvalidCoins1.setBackground(new java.awt.Color(153, 153, 153));
-        InvalidCoins1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InvalidCoins1.setForeground(new java.awt.Color(255, 0, 51));
-        InvalidCoins1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        InvalidCoins1.setText("COINS NOT VALID");
-        InvalidCoins1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CoinsInvalid.setBackground(new java.awt.Color(153, 153, 153));
+        CoinsInvalid.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CoinsInvalid.setForeground(new java.awt.Color(255, 0, 51));
+        CoinsInvalid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CoinsInvalid.setText("COINS NOT VALID");
+        CoinsInvalid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        InvalidCoins2.setBackground(new java.awt.Color(153, 153, 153));
-        InvalidCoins2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InvalidCoins2.setForeground(new java.awt.Color(255, 0, 51));
-        InvalidCoins2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        InvalidCoins2.setText("NO CHANGE AVAILABLE");
-        InvalidCoins2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        NoChangeAvailable.setBackground(new java.awt.Color(153, 153, 153));
+        NoChangeAvailable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        NoChangeAvailable.setForeground(new java.awt.Color(255, 0, 51));
+        NoChangeAvailable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NoChangeAvailable.setText("NO CHANGE AVAILABLE");
+        NoChangeAvailable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -572,11 +578,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                         .addComponent(Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(InvalidCoins1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(CoinsInvalid, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                             .addComponent(TotalInserted, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(InvalidCoins2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NoChangeAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)))
                 .addGap(51, 51, 51))
         );
@@ -586,7 +592,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(InvalidCoins1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CoinsInvalid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +609,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(InvalidCoins2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NoChangeAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
@@ -944,6 +950,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CoinsInput;
+    private javax.swing.JLabel CoinsInvalid;
     private javax.swing.JButton CollectCash;
     private javax.swing.JButton CollectDrink;
     private javax.swing.JButton CollectDrink2;
@@ -966,8 +973,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel DrinkBrand6;
     public javax.swing.JLabel DrinkBrand6Price;
     private javax.swing.JButton Insert;
-    private javax.swing.JLabel InvalidCoins1;
-    private javax.swing.JLabel InvalidCoins2;
+    private javax.swing.JLabel NoChangeAvailable;
     private javax.swing.JLabel TotalInserted;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
