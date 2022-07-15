@@ -304,11 +304,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         DrinkBrand6Price.setText("?");
 
         stock1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock1.setForeground(new java.awt.Color(255, 0, 0));
+        stock1.setForeground(new java.awt.Color(153, 153, 153));
         stock1.setText("NOT IN STOCK");
 
         stock2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock2.setForeground(new java.awt.Color(255, 0, 0));
+        stock2.setForeground(new java.awt.Color(153, 153, 153));
         stock2.setText("NOT IN STOCK");
 
         stock3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -316,15 +316,15 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         stock3.setText("NOT IN STOCK");
 
         stock4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock4.setForeground(new java.awt.Color(255, 0, 0));
+        stock4.setForeground(new java.awt.Color(153, 153, 153));
         stock4.setText("NOT IN STOCK");
 
         stock5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock5.setForeground(new java.awt.Color(255, 0, 0));
+        stock5.setForeground(new java.awt.Color(153, 153, 153));
         stock5.setText("NOT IN STOCK");
 
         stock6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock6.setForeground(new java.awt.Color(255, 0, 0));
+        stock6.setForeground(new java.awt.Color(153, 153, 153));
         stock6.setText("NOT IN STOCK");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -544,14 +544,14 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         InvalidCoins.setBackground(new java.awt.Color(153, 153, 153));
         InvalidCoins.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InvalidCoins.setForeground(new java.awt.Color(255, 0, 51));
+        InvalidCoins.setForeground(new java.awt.Color(153, 153, 153));
         InvalidCoins.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InvalidCoins.setText("COINS NOT VALID");
         InvalidCoins.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         NoChangeAvailable.setBackground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        NoChangeAvailable.setForeground(new java.awt.Color(255, 0, 51));
+        NoChangeAvailable.setForeground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NoChangeAvailable.setText("NO CHANGE AVAILABLE");
         NoChangeAvailable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -687,10 +687,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,
                     "Drink" + drinkName + " has been dispensed.");
             purchasedDrink = null;
-            CollectCan.setEnabled(true);
-        } else {
-            JOptionPane.showMessageDialog(rootPane,
-                    "No drinks were dispensed");
+            CollectCan.setEnabled(false);
         }
     }//GEN-LAST:event_CollectCanActionPerformed
 
