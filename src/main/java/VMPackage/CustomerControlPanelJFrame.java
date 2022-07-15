@@ -1,7 +1,6 @@
 package VMPackage;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -43,6 +42,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public static int coinStock20;
     public static int coinStock50;
     public static int coinStock1;
+
+    public static String VMhasChange;
+    public static String purchasedDrink;
 
 //    stock & change part
     Double remainder = null;
@@ -89,44 +91,41 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }
 
     private void enableButtons() {
-        InvalidCoins.disable();
-        NoChangeAvailable.disable();
-
         if (drinkStock1 == 0) {
-            stock1.enable();
+            stock1.setForeground(Color.RED);
             Drink1Select.setEnabled(false);
         } else {
-            stock1.disable();
+            stock1.setForeground(Color.GRAY);
         }
         if (drinkStock2 == 0) {
-            stock2.enable();
+            stock2.setForeground(Color.RED);
             Drink2Select.setEnabled(false);
         } else {
-            stock2.disable();
+            stock2.setForeground(Color.GRAY);
         }
         if (drinkStock3 == 0) {
-            stock3.enable();
+            stock3.setForeground(Color.RED);
             Drink3Select.setEnabled(false);
         } else {
-            stock3.disable();
+            stock3.setForeground(Color.GRAY);
         }
         if (drinkStock4 == 0) {
-            stock4.enable();
+            stock4.setForeground(Color.RED);
             Drink4Select.setEnabled(false);
         } else {
-            stock4.disable();
+            stock4.setForeground(Color.GRAY);
         }
         if (drinkStock5 == 0) {
-            stock5.enable();
+            stock5.setForeground(Color.RED);
             Drink5Select.setEnabled(false);
         } else {
-            stock5.disable();
+            stock5.setForeground(Color.GRAY);
         }
         if (drinkStock6 == 0) {
-            stock6.enable();
+            stock6.setForeground(Color.RED);
             Drink6Select.setEnabled(false);
         } else {
-            stock6.disable();
+            stock6.setForeground(Color.GRAY);
         }
     }
 
@@ -146,6 +145,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
         enableButtons();
+
+        CollectCash.disable();
+        CollectDrink2.disable();
     }
 
     @SuppressWarnings("unchecked")
@@ -302,15 +304,15 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         DrinkBrand6Price.setText("?");
 
         stock1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock1.setForeground(new java.awt.Color(255, 0, 0));
+        stock1.setForeground(new java.awt.Color(153, 153, 153));
         stock1.setText("NOT IN STOCK");
 
         stock2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock2.setForeground(new java.awt.Color(255, 0, 0));
+        stock2.setForeground(new java.awt.Color(153, 153, 153));
         stock2.setText("NOT IN STOCK");
 
         stock3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock3.setForeground(new java.awt.Color(255, 0, 0));
+        stock3.setForeground(new java.awt.Color(153, 153, 153));
         stock3.setText("NOT IN STOCK");
 
         stock4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -648,11 +650,48 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CollectCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectCashActionPerformed
-        // TODO add your handling code here:
+        if ("true".equals(VMhasChange)) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Change of " + ((double) Math.round(remainder * 100) / 100) + " has been collected.");
+            totalInsertedCoins = 0;
+            remainder = null;
+
+            NoChangeAvailable.setForeground(Color.GRAY);
+        } else if ("false".equals(VMhasChange)) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Sorry, the vending machine does not have change.");
+            NoChangeAvailable.setForeground(Color.RED);
+        }
+        CollectCash.disable();
+        VMhasChange = null;
     }//GEN-LAST:event_CollectCashActionPerformed
 
     private void CollectDrink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectDrink2ActionPerformed
         // If purchase is successful, then Drink X has been collected
+        String drinkName = null;
+        switch (purchasedDrink) {
+            case "drinksStock1" ->
+                drinkName = "Blueberry";
+            case "drinksStock2" ->
+                drinkName = "Raspberry";
+            case "drinksStock3" ->
+                drinkName = "Passionfruit";
+            case "drinksStock4" ->
+                drinkName = "Strawberry";
+            case "drinksStock5" ->
+                drinkName = "Orange";
+            case "drinksStock6" ->
+                drinkName = "Lime";
+        }
+        if (purchasedDrink != null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Drink" + drinkName + " has been dispensed.");
+            purchasedDrink = null;
+            CollectDrink2.disable();
+        } else {
+            JOptionPane.showMessageDialog(rootPane,
+                    "No drinks were dispensed");
+        }
     }//GEN-LAST:event_CollectDrink2ActionPerformed
 
     private void CoinsInputActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CoinsInputActionPerformed
@@ -661,12 +700,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     // GEN-LAST:event_CoinsInputActionPerformed
 
     private void CollectDrinkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CollectDrinkActionPerformed
-
         double isSufficient = (double) Math.round(totalInsertedCoins * 100) / 100; // a var for checking if the coins inserted are sufficient to purchase
-        // drink
         if (Drink1Select.isSelected() == false && Drink2Select.isSelected() == false && Drink3Select.isSelected() == false && Drink4Select.isSelected() == false && Drink5Select.isSelected() == false && Drink6Select.isSelected() == false) {
             JOptionPane.showMessageDialog(rootPane,
-                    "Please, make a drinks selection.");
+                    "Please, select a drink.");
         } else {
             String selectedDrink = null;
 
@@ -677,68 +714,77 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     isSufficient -= (double) Math.round(drinkPrice1 * 100) / 100;
                     selectedDrink = "drinksStock1";
                 } else if (Drink2Select.isSelected()) {
-                    isSufficient -= (double) Math.round(drinkPrice2 * 100) / 100;;
+                    isSufficient -= (double) Math.round(drinkPrice2 * 100) / 100;
                     selectedDrink = "drinksStock2";
                 } else if (Drink3Select.isSelected()) {
-                    isSufficient -= (double) Math.round(drinkPrice3 * 100) / 100;;
+                    isSufficient -= (double) Math.round(drinkPrice3 * 100) / 100;
                     selectedDrink = "drinksStock3";
                 } else if (Drink4Select.isSelected()) {
-                    isSufficient -= (double) Math.round(drinkPrice4 * 100) / 100;;
+                    isSufficient -= (double) Math.round(drinkPrice4 * 100) / 100;
                     selectedDrink = "drinksStock4";
                 } else if (Drink5Select.isSelected()) {
                     isSufficient -= (double) Math.round(drinkPrice5 * 100) / 100;;
                     selectedDrink = "drinksStock5";
                 } else if (Drink6Select.isSelected()) {
-                    isSufficient -= (double) Math.round(drinkPrice6 * 100) / 100;;
+                    isSufficient -= (double) Math.round(drinkPrice6 * 100) / 100;
                     selectedDrink = "drinksStock6";
                 }
-
                 if (isSufficient < 0) {
                     JOptionPane.showMessageDialog(rootPane, "Insufficient Funds. Please, insert more money");
                 } else if (isSufficient == 0 || isSufficient > 0) { // aka, successful
                     // Reduce stock by 1 from the selected drink
                     FileHandler.reduce("DrinksStock.txt", selectedDrink, 1);
+                    purchasedDrink = selectedDrink;
+                    getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
+                    enableButtons();
 
-                    if (isSufficient == 0) {
+                    if (isSufficient == 0) { // No change needed
                         JOptionPane.showMessageDialog(rootPane,
                                 "Item purchased successfully! Please, collect the dispensed drink.");
-                    } else if (isSufficient > 0) {
+                        CollectDrink2.enable();
+                        totalInsertedCoins = 0;
+                        TotalInserted.setText("0.00");
+                        remainder = null;
+                    } else if (isSufficient > 0) { //Change needed
                         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
-                        if (coinStock1 + coinStock20 + coinStock10 + coinStock50 < isSufficient) {
-                            NoChangeAvailable.enable();
+                        CollectCash.enable();
+                        CollectDrink2.enable();
+//                        checkiing VM Stock
+                        if (coinStock1 + coinStock20 + coinStock10 + coinStock50 < isSufficient) { //if no change in VM
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Item purchased successfully! Please, collect the dispensed drink.");
+                            VMhasChange = "false";
                             NoChangeAvailable.setForeground(Color.RED);
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane,
-                                "Item purchased successfully! Please, collect the dispensed change & drink.");
-
-                        remainder = isSufficient;
-                        List<Double> change = giveChange(isSufficient);
-//                        System.out.println("== Change ==");
-
-                        for (int i = 0; i < change.size(); i++) {
-                            System.out.println(change.get(i));
-                            if (change.get(i) == 1.0) {
-                                coinStock1 -= 1;
-                                FileHandler.reduce("CoinStock.txt", "coinsStock-1", 1);
-                            } else if (change.get(i) == 0.5) {
-                                coinStock50 -= 1;
-                                FileHandler.reduce("CoinStock.txt", "coinsStock50", 1);
-                            } else if (change.get(i) == 0.2) {
-                                coinStock20 -= 1;
-                                FileHandler.reduce("CoinStock.txt", "coinsStock20", 1);
-                            } else if (change.get(i) == 0.1) {
-                                coinStock10 -= 1;
-                                FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
+                        } else if (coinStock1 + coinStock20 + coinStock10 + coinStock50 >= isSufficient) { //there is change in VM
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Item purchased successfully! Please, collect the dispensed change & drink.");
+                            VMhasChange = "true";
+                            NoChangeAvailable.setForeground(Color.GRAY);
+                            remainder = isSufficient;
+                            List<Double> change = giveChange(isSufficient);
+                            for (int i = 0; i < change.size(); i++) {
+                                System.out.println(change.get(i));
+                                if (change.get(i) == 1.0) {
+                                    coinStock1 -= 1;
+                                    FileHandler.reduce("CoinStock.txt", "coinsStock-1", 1);
+                                } else if (change.get(i) == 0.5) {
+                                    coinStock50 -= 1;
+                                    FileHandler.reduce("CoinStock.txt", "coinsStock50", 1);
+                                } else if (change.get(i) == 0.2) {
+                                    coinStock20 -= 1;
+                                    FileHandler.reduce("CoinStock.txt", "coinsStock20", 1);
+                                } else if (change.get(i) == 0.1) {
+                                    coinStock10 -= 1;
+                                    FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
+                                }
                             }
-                        }
-
 //                        System.out.println("==Sum of change: ==");
 //                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
-                        // RESET ALL
-                        CoinsInput.setText("0.00");
+                            // RESET ALL
+                            CoinsInput.setText("0.00");
 //                        HOHO: CoinsChange.setText(String.valueOf((double) Math.round(isSufficient * 100) / 100));
 //                        new CustomerControlPanelJFrame().enableButtons();
+                        }
                     }
                 }
             }
@@ -816,6 +862,8 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     }// GEN-LAST:event_terminateActionPerformed
 
     private void InsertActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_InsertActionPerformed
+//      MESH ELMAFROUD N7OTOHOM FEL STOCK TALAMA LESSA MASHTARASH 3ASHAN MOMKEN MAYESHTEREESH FEL AKHER
+
         insertedCoin = Double.valueOf(CoinsInput.getText());
         String updateStock = null;
 
@@ -845,6 +893,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             InvalidCoins.setForeground(Color.RED);
         }
 
+//        HENA DA ELLY ELMAFROUD YE7SAL FEL AKHER MESH HENA
         if (updateStock == "coinsStock10" || updateStock == "coinsStock20" || updateStock == "coinsStock50"
                 || updateStock == "coinsStock-1") {
             try {
