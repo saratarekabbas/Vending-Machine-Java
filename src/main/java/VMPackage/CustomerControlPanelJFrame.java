@@ -544,14 +544,14 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         InvalidCoins.setBackground(new java.awt.Color(153, 153, 153));
         InvalidCoins.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InvalidCoins.setForeground(new java.awt.Color(255, 0, 51));
+        InvalidCoins.setForeground(new java.awt.Color(153, 153, 153));
         InvalidCoins.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InvalidCoins.setText("COINS NOT VALID");
         InvalidCoins.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         NoChangeAvailable.setBackground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        NoChangeAvailable.setForeground(new java.awt.Color(255, 0, 51));
+        NoChangeAvailable.setForeground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NoChangeAvailable.setText("NO CHANGE AVAILABLE");
         NoChangeAvailable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
