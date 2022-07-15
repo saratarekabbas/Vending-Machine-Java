@@ -147,7 +147,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         enableButtons();
 
         CollectCash.disable();
-        CollectDrink2.disable();
+        CollectCan.disable();
     }
 
     @SuppressWarnings("unchecked")
@@ -199,7 +199,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         TotalInserted = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        CollectDrink2 = new javax.swing.JButton();
+        CollectCan = new javax.swing.JButton();
         InvalidCoins = new javax.swing.JLabel();
         NoChangeAvailable = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -304,11 +304,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         DrinkBrand6Price.setText("?");
 
         stock1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock1.setForeground(new java.awt.Color(153, 153, 153));
+        stock1.setForeground(new java.awt.Color(255, 0, 0));
         stock1.setText("NOT IN STOCK");
 
         stock2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock2.setForeground(new java.awt.Color(153, 153, 153));
+        stock2.setForeground(new java.awt.Color(255, 0, 0));
         stock2.setText("NOT IN STOCK");
 
         stock3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -515,10 +515,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         jLabel23.setText("Collect Can Here");
 
-        CollectDrink2.setText("Press Here");
-        CollectDrink2.addActionListener(new java.awt.event.ActionListener() {
+        CollectCan.setText("Press Here");
+        CollectCan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CollectDrink2ActionPerformed(evt);
+                CollectCanActionPerformed(evt);
             }
         });
 
@@ -530,7 +530,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CollectDrink2)
+                .addComponent(CollectCan)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -538,20 +538,20 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(CollectDrink2))
+                    .addComponent(CollectCan))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         InvalidCoins.setBackground(new java.awt.Color(153, 153, 153));
         InvalidCoins.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InvalidCoins.setForeground(new java.awt.Color(153, 153, 153));
+        InvalidCoins.setForeground(new java.awt.Color(255, 0, 51));
         InvalidCoins.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InvalidCoins.setText("COINS NOT VALID");
         InvalidCoins.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         NoChangeAvailable.setBackground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        NoChangeAvailable.setForeground(new java.awt.Color(153, 153, 153));
+        NoChangeAvailable.setForeground(new java.awt.Color(255, 0, 51));
         NoChangeAvailable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NoChangeAvailable.setText("NO CHANGE AVAILABLE");
         NoChangeAvailable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -662,11 +662,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     "Sorry, the vending machine does not have change.");
             NoChangeAvailable.setForeground(Color.RED);
         }
-        CollectCash.disable();
+        CollectCash.setEnabled(false);
         VMhasChange = null;
     }//GEN-LAST:event_CollectCashActionPerformed
 
-    private void CollectDrink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectDrink2ActionPerformed
+    private void CollectCanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectCanActionPerformed
         // If purchase is successful, then Drink X has been collected
         String drinkName = null;
         switch (purchasedDrink) {
@@ -687,12 +687,12 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,
                     "Drink" + drinkName + " has been dispensed.");
             purchasedDrink = null;
-            CollectDrink2.disable();
+            CollectCan.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(rootPane,
                     "No drinks were dispensed");
         }
-    }//GEN-LAST:event_CollectDrink2ActionPerformed
+    }//GEN-LAST:event_CollectCanActionPerformed
 
     private void CoinsInputActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CoinsInputActionPerformed
         // N/A
@@ -741,14 +741,14 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     if (isSufficient == 0) { // No change needed
                         JOptionPane.showMessageDialog(rootPane,
                                 "Item purchased successfully! Please, collect the dispensed drink.");
-                        CollectDrink2.enable();
+                        CollectCan.enable();
                         totalInsertedCoins = 0;
                         TotalInserted.setText("0.00");
                         remainder = null;
                     } else if (isSufficient > 0) { //Change needed
                         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
-                        CollectCash.enable();
-                        CollectDrink2.enable();
+                        CollectCash.setEnabled(true);
+                        CollectCan.setEnabled(true);
 //                        checkiing VM Stock
                         if (coinStock1 + coinStock20 + coinStock10 + coinStock50 < isSufficient) { //if no change in VM
                             JOptionPane.showMessageDialog(rootPane,
@@ -998,9 +998,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CoinsInput;
+    private javax.swing.JButton CollectCan;
     private javax.swing.JButton CollectCash;
     private javax.swing.JButton CollectDrink;
-    private javax.swing.JButton CollectDrink2;
     private javax.swing.JRadioButton Drink1Select;
     private javax.swing.JRadioButton Drink2Select;
     private javax.swing.JRadioButton Drink3Select;
