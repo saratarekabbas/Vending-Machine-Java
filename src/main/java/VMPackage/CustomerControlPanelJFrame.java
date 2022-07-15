@@ -90,6 +90,15 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         coinStock1 = Integer.parseInt(coinsStock.get(7));
     }
 
+    public void unselectAllDrinks() {
+        Drink1Select.setSelected(false);
+        Drink2Select.setSelected(false);
+        Drink3Select.setSelected(false);
+        Drink4Select.setSelected(false);
+        Drink5Select.setSelected(false);
+        Drink6Select.setSelected(false);
+    }
+
     private void enableButtons() {
         if (drinkStock1 == 0) {
             stock1.setForeground(Color.RED);
@@ -146,8 +155,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
         enableButtons();
 
-        CollectCash.disable();
-        CollectCan.disable();
+        CollectCash.setEnabled(false);
+        CollectDrink2.setEnabled(false);
+
+        InvalidCoins.setForeground(Color.GRAY);
+        NoChangeAvailable.setForeground(Color.GRAY);
     }
 
     @SuppressWarnings("unchecked")
@@ -199,7 +211,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         TotalInserted = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        CollectCan = new javax.swing.JButton();
+        CollectDrink2 = new javax.swing.JButton();
         InvalidCoins = new javax.swing.JLabel();
         NoChangeAvailable = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -304,11 +316,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         DrinkBrand6Price.setText("?");
 
         stock1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock1.setForeground(new java.awt.Color(153, 153, 153));
+        stock1.setForeground(new java.awt.Color(255, 0, 0));
         stock1.setText("NOT IN STOCK");
 
         stock2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock2.setForeground(new java.awt.Color(153, 153, 153));
+        stock2.setForeground(new java.awt.Color(255, 0, 0));
         stock2.setText("NOT IN STOCK");
 
         stock3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -316,15 +328,15 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         stock3.setText("NOT IN STOCK");
 
         stock4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock4.setForeground(new java.awt.Color(153, 153, 153));
+        stock4.setForeground(new java.awt.Color(255, 0, 0));
         stock4.setText("NOT IN STOCK");
 
         stock5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock5.setForeground(new java.awt.Color(153, 153, 153));
+        stock5.setForeground(new java.awt.Color(255, 0, 0));
         stock5.setText("NOT IN STOCK");
 
         stock6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        stock6.setForeground(new java.awt.Color(153, 153, 153));
+        stock6.setForeground(new java.awt.Color(255, 0, 0));
         stock6.setText("NOT IN STOCK");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -515,10 +527,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         jLabel23.setText("Collect Can Here");
 
-        CollectCan.setText("Press Here");
-        CollectCan.addActionListener(new java.awt.event.ActionListener() {
+        CollectDrink2.setText("Press Here");
+        CollectDrink2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CollectCanActionPerformed(evt);
+                CollectDrink2ActionPerformed(evt);
             }
         });
 
@@ -530,7 +542,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CollectCan)
+                .addComponent(CollectDrink2)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -538,20 +550,20 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(CollectCan))
+                    .addComponent(CollectDrink2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         InvalidCoins.setBackground(new java.awt.Color(153, 153, 153));
         InvalidCoins.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        InvalidCoins.setForeground(new java.awt.Color(153, 153, 153));
+        InvalidCoins.setForeground(new java.awt.Color(255, 0, 51));
         InvalidCoins.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InvalidCoins.setText("COINS NOT VALID");
         InvalidCoins.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         NoChangeAvailable.setBackground(new java.awt.Color(153, 153, 153));
         NoChangeAvailable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        NoChangeAvailable.setForeground(new java.awt.Color(153, 153, 153));
+        NoChangeAvailable.setForeground(new java.awt.Color(255, 0, 51));
         NoChangeAvailable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NoChangeAvailable.setText("NO CHANGE AVAILABLE");
         NoChangeAvailable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -666,7 +678,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         VMhasChange = null;
     }//GEN-LAST:event_CollectCashActionPerformed
 
-    private void CollectCanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectCanActionPerformed
+    private void CollectDrink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectDrink2ActionPerformed
         // If purchase is successful, then Drink X has been collected
         String drinkName = null;
         switch (purchasedDrink) {
@@ -687,9 +699,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,
                     "Drink" + drinkName + " has been dispensed.");
             purchasedDrink = null;
-            CollectCan.setEnabled(false);
+            CollectDrink2.setEnabled(false);
         }
-    }//GEN-LAST:event_CollectCanActionPerformed
+    }//GEN-LAST:event_CollectDrink2ActionPerformed
 
     private void CoinsInputActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CoinsInputActionPerformed
         // N/A
@@ -734,18 +746,18 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     purchasedDrink = selectedDrink;
                     getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
                     enableButtons();
+                    unselectAllDrinks();
+                    totalInsertedCoins = 0;
+                    CollectDrink2.setEnabled(true);
 
                     if (isSufficient == 0) { // No change needed
                         JOptionPane.showMessageDialog(rootPane,
                                 "Item purchased successfully! Please, collect the dispensed drink.");
-                        CollectCan.enable();
-                        totalInsertedCoins = 0;
                         TotalInserted.setText("0.00");
                         remainder = null;
                     } else if (isSufficient > 0) { //Change needed
                         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
                         CollectCash.setEnabled(true);
-                        CollectCan.setEnabled(true);
 //                        checkiing VM Stock
                         if (coinStock1 + coinStock20 + coinStock10 + coinStock50 < isSufficient) { //if no change in VM
                             JOptionPane.showMessageDialog(rootPane,
@@ -861,34 +873,97 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     private void InsertActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_InsertActionPerformed
 //      MESH ELMAFROUD N7OTOHOM FEL STOCK TALAMA LESSA MASHTARASH 3ASHAN MOMKEN MAYESHTEREESH FEL AKHER
 
-        insertedCoin = Double.valueOf(CoinsInput.getText());
+//        insertedCoin = Double.valueOf(CoinsInput.getText());
         String updateStock = null;
 
-        if (insertedCoin == 0.1) {
-            InvalidCoins.enable();
-            InvalidCoins.setForeground(Color.GRAY);
-            totalInsertedCoins += 0.1;
-            updateStock = "coinsStock10";
-        } else if (insertedCoin == 0.2) {
-            InvalidCoins.enable();
-            InvalidCoins.setForeground(Color.GRAY);
-            updateStock = "coinsStock20";
-            totalInsertedCoins += 0.2;
-        } else if (insertedCoin == 0.5) {
-            InvalidCoins.enable();
-            InvalidCoins.setForeground(Color.GRAY);
-            updateStock = "coinsStock50";
-            totalInsertedCoins += 0.5;
-        } else if (insertedCoin == 1) {
-            InvalidCoins.enable();
-            InvalidCoins.setForeground(Color.GRAY);
-            updateStock = "coinsStock-1";
-            totalInsertedCoins += 1;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Please, insert valid money (0.10 / 0.20 / 0.50 / 1)");
-            InvalidCoins.enable();
-            InvalidCoins.setForeground(Color.RED);
+        switch (CoinsInput.getText()) {
+            case "0.1":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                totalInsertedCoins += 0.1;
+                updateStock = "coinsStock10";
+                break;
+            case "0.10":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                totalInsertedCoins += 0.1;
+                updateStock = "coinsStock10";
+                break;
+            case "0.2":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock20";
+                totalInsertedCoins += 0.2;
+                InvalidCoins.setEnabled(true);
+                break;
+            case "0.20":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock20";
+                totalInsertedCoins += 0.2;
+                break;
+            case "0.5":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock50";
+                totalInsertedCoins += 0.5;
+                break;
+            case "0.50":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock50";
+                totalInsertedCoins += 0.5;
+                break;
+            case "1":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock-1";
+                totalInsertedCoins += 1;
+                break;
+            case "1.0":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock-1";
+                totalInsertedCoins += 1;
+                break;
+            case "1.00":
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.GRAY);
+                updateStock = "coinsStock-1";
+                totalInsertedCoins += 1;
+                break;
+            default:
+                JOptionPane.showMessageDialog(rootPane, "Please, insert valid money (0.10 / 0.20 / 0.50 / 1)");
+                InvalidCoins.setEnabled(true);
+                InvalidCoins.setForeground(Color.RED);
+                break;
         }
+
+//        if (insertedCoin == 0.1) {
+//            InvalidCoins.setEnabled(true);
+//            InvalidCoins.setForeground(Color.GRAY);
+//            totalInsertedCoins += 0.1;
+//            updateStock = "coinsStock10";
+//        } else if (insertedCoin == 0.2) {
+//            InvalidCoins.setEnabled(true);
+//            InvalidCoins.setForeground(Color.GRAY);
+//            updateStock = "coinsStock20";
+//            totalInsertedCoins += 0.2;
+//        } else if (insertedCoin == 0.5) {
+//            InvalidCoins.setEnabled(true);
+//            InvalidCoins.setForeground(Color.GRAY);
+//            updateStock = "coinsStock50";
+//            totalInsertedCoins += 0.5;
+//        } else if (insertedCoin == 1) {
+//            InvalidCoins.setEnabled(true);
+//            InvalidCoins.setForeground(Color.GRAY);
+//            updateStock = "coinsStock-1";
+//            totalInsertedCoins += 1;
+//        } else {
+//            JOptionPane.showMessageDialog(rootPane, "Please, insert valid money (0.10 / 0.20 / 0.50 / 1)");
+//            InvalidCoins.setEnabled(true);
+//            InvalidCoins.setForeground(Color.RED);
+//        }
 
 //        HENA DA ELLY ELMAFROUD YE7SAL FEL AKHER MESH HENA
         if (updateStock == "coinsStock10" || updateStock == "coinsStock20" || updateStock == "coinsStock50"
@@ -995,9 +1070,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CoinsInput;
-    private javax.swing.JButton CollectCan;
     private javax.swing.JButton CollectCash;
     private javax.swing.JButton CollectDrink;
+    private javax.swing.JButton CollectDrink2;
     private javax.swing.JRadioButton Drink1Select;
     private javax.swing.JRadioButton Drink2Select;
     private javax.swing.JRadioButton Drink3Select;
