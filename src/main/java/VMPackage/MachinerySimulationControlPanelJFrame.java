@@ -119,8 +119,9 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         jScrollPane19 = new javax.swing.JScrollPane();
         NewDrinkStock6 = new javax.swing.JTextPane();
         jPanel5 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        UnlockDoor = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
+        LockDoor = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -331,16 +332,23 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Exit", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status of Vending Machine", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        jButton5.setText("Terminate");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        UnlockDoor.setText("Unlock");
+        UnlockDoor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                UnlockDoorActionPerformed(evt);
             }
         });
 
-        jLabel19.setText("Exit Machinery Panel");
+        jLabel19.setText("Door Lock (Change status if required)");
+
+        LockDoor.setText("Lock");
+        LockDoor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LockDoorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -350,15 +358,18 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LockDoor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(UnlockDoor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel19))
+                    .addComponent(UnlockDoor)
+                    .addComponent(jLabel19)
+                    .addComponent(LockDoor))
                 .addGap(0, 16, Short.MAX_VALUE))
         );
 
@@ -556,9 +567,22 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void UnlockDoorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnlockDoorActionPerformed
+        UpdateCoinsStockButton.setEnabled(true);
+        DisplayCoinsStockButton.setEnabled(true);
+        NewCoinStock1.setEnabled(true);
+        NewCoinStock2.setEnabled(true);
+        NewCoinStock3.setEnabled(true);
+        NewCoinStock4.setEnabled(true);
+        NewDrinkStock1.setEnabled(true);
+        NewDrinkStock2.setEnabled(true);
+        NewDrinkStock3.setEnabled(true);
+        NewDrinkStock4.setEnabled(true);
+        NewDrinkStock5.setEnabled(true);
+        NewDrinkStock6.setEnabled(true);
+        UpdateDrinksStockButton.setEnabled(true);
+        DisplayDrinksStockButton.setEnabled(true);
+    }//GEN-LAST:event_UnlockDoorActionPerformed
 
     private void DisplayDrinksStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayDrinksStockButtonActionPerformed
         try {
@@ -689,8 +713,25 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdateCoinsStockButtonActionPerformed
 
+    private void LockDoorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LockDoorActionPerformed
+        UpdateCoinsStockButton.setEnabled(false);
+        DisplayCoinsStockButton.setEnabled(false);
+        NewCoinStock1.setEnabled(false);
+        NewCoinStock2.setEnabled(false);
+        NewCoinStock3.setEnabled(false);
+        NewCoinStock4.setEnabled(false);
+        NewDrinkStock1.setEnabled(false);
+        NewDrinkStock2.setEnabled(false);
+        NewDrinkStock3.setEnabled(false);
+        NewDrinkStock4.setEnabled(false);
+        NewDrinkStock5.setEnabled(false);
+        NewDrinkStock6.setEnabled(false);
+        UpdateDrinksStockButton.setEnabled(false);
+        DisplayDrinksStockButton.setEnabled(false);
+    }//GEN-LAST:event_LockDoorActionPerformed
+
     /**
-     * @param args the command line arguments
+     * @param args NewCoinStock1the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -746,6 +787,7 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel DrinkStock4;
     private javax.swing.JLabel DrinkStock5;
     private javax.swing.JLabel DrinkStock6;
+    private javax.swing.JButton LockDoor;
     private javax.swing.JTextPane NewCoinStock1;
     private javax.swing.JTextPane NewCoinStock2;
     private javax.swing.JTextPane NewCoinStock3;
@@ -758,9 +800,9 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane NewDrinkStock6;
     private javax.swing.JLabel Stock7;
     private javax.swing.JLabel Stock8;
+    private javax.swing.JButton UnlockDoor;
     private javax.swing.JButton UpdateCoinsStockButton;
     private javax.swing.JButton UpdateDrinksStockButton;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

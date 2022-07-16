@@ -444,7 +444,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Exit">
+                <TitledBorder title="Status of Vending Machine">
                   <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
                 </TitledBorder>
               </Border>
@@ -458,7 +458,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton5" min="-2" pref="207" max="-2" attributes="0"/>
+                      <Component id="LockDoor" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="UnlockDoor" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -467,8 +469,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="UnlockDoor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LockDoor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                   </Group>
@@ -476,18 +479,26 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton5">
+            <Component class="javax.swing.JButton" name="UnlockDoor">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Terminate"/>
+                <Property name="text" type="java.lang.String" value="Unlock"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UnlockDoorActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Exit Machinery Panel"/>
+                <Property name="text" type="java.lang.String" value="Door Lock (Change status if required)"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="LockDoor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lock"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LockDoorActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
