@@ -1,5 +1,6 @@
 package VMPackage;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -128,7 +129,6 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
 
     public MaintainerControlPanelJFrame() {
         initComponents();
-
 //        DISABLE ALL BUTTONS BY DEFAULT
         totaldenomination10.setEnabled(false);
         totaldenomination20.setEnabled(false);
@@ -145,6 +145,8 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
         GetNewDrink4Price.setEnabled(false);
         GetNewDrink5Price.setEnabled(false);
         GetNewDrink6Price.setEnabled(false);
+        PasswordInvalid.setEnabled(false);
+        PasswordValid.setEnabled(false);
     }
 
     /**
@@ -201,6 +203,8 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         Lock = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
+        PasswordInvalid = new javax.swing.JLabel();
+        PasswordValid = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -427,7 +431,6 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
                             .addComponent(GetNewDrink1Price, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(UpdateDrinksPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45))))
         );
@@ -547,16 +550,16 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Door Lock", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Finish", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        Lock.setText("Lock");
+        Lock.setText("Finish");
         Lock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LockActionPerformed(evt);
             }
         });
 
-        jLabel24.setText("VENDING MACHINE'S DOOR LOCK");
+        jLabel24.setText("Press Here when Finished");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -578,6 +581,16 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
                 .addGap(0, 16, Short.MAX_VALUE))
         );
 
+        PasswordInvalid.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        PasswordInvalid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PasswordInvalid.setText("PASSWORD INVALID");
+        PasswordInvalid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        PasswordValid.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        PasswordValid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PasswordValid.setText("PASSWORD VALID");
+        PasswordValid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -585,21 +598,27 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(PasswordValid, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PasswordInvalid, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(InsertedPassword)
+                                .addGap(18, 18, 18)
+                                .addComponent(submit)))
+                        .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(InsertedPassword)
-                        .addGap(18, 18, 18)
-                        .addComponent(submit)
-                        .addGap(20, 20, 20))
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,7 +628,11 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InsertedPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordInvalid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordValid, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -638,7 +661,7 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -669,14 +692,12 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
                 drinksStockList.add(myReader.next());
             }
             myReader.close();
-
             DrinkStock1.setText(String.valueOf(drinksStockList.get(1)));
             DrinkStock2.setText(String.valueOf(drinksStockList.get(3)));
             DrinkStock3.setText(String.valueOf(drinksStockList.get(5)));
             DrinkStock4.setText(String.valueOf(drinksStockList.get(7)));
             DrinkStock5.setText(String.valueOf(drinksStockList.get(9)));
             DrinkStock6.setText(String.valueOf(drinksStockList.get(11)));
-
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
@@ -698,7 +719,6 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             totalCash = 0;
             TotalCash.setText(String.valueOf(totalCash));
             CoinStock.setText("?");
-
             //        RESET THE QUANTITY TO 0 IN THE FILE
             try {
                 FileWriter myWriter = new FileWriter("CoinStock.txt");
@@ -826,8 +846,14 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
             GetNewDrink4Price.setEnabled(true);
             GetNewDrink5Price.setEnabled(true);
             GetNewDrink6Price.setEnabled(true);
+            PasswordValid.setEnabled(true);
+            PasswordValid.setForeground(Color.GREEN);
+            PasswordInvalid.setEnabled(false);
         } else if (!insertedPassword.equals(password)) {
             JOptionPane.showMessageDialog(rootPane, "Incorrect Password!");
+            PasswordInvalid.setEnabled(true);
+            PasswordInvalid.setForeground(Color.red);
+            PasswordValid.setEnabled(false);
         }
     }//GEN-LAST:event_submitActionPerformed
 
@@ -847,6 +873,8 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
         GetNewDrink4Price.setEnabled(false);
         GetNewDrink5Price.setEnabled(false);
         GetNewDrink6Price.setEnabled(false);
+        PasswordInvalid.setEnabled(false);
+        PasswordValid.setEnabled(false);
     }//GEN-LAST:event_LockActionPerformed
 
     private void totaldenomination10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totaldenomination10ActionPerformed
@@ -981,6 +1009,8 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField GetNewDrink6Price;
     private javax.swing.JTextField InsertedPassword;
     private javax.swing.JButton Lock;
+    private javax.swing.JLabel PasswordInvalid;
+    private javax.swing.JLabel PasswordValid;
     private javax.swing.JLabel TotalCash;
     private javax.swing.JButton TotalCashHeld;
     private javax.swing.JButton UpdateDrinksPrice;
