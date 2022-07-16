@@ -73,11 +73,30 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
      */
     public MachinerySimulationControlPanelJFrame() {
         initComponents();
+        
+        UpdateCoinsStockButton.setEnabled(false);
+        DisplayCoinsStockButton.setEnabled(false);
+        NewCoinStock1.setEnabled(false);
+        NewCoinStock2.setEnabled(false);
+        NewCoinStock3.setEnabled(false);
+        NewCoinStock4.setEnabled(false);
+        NewDrinkStock1.setEnabled(false);
+        NewDrinkStock2.setEnabled(false);
+        NewDrinkStock3.setEnabled(false);
+        NewDrinkStock4.setEnabled(false);
+        NewDrinkStock5.setEnabled(false);
+        NewDrinkStock6.setEnabled(false);
+        UpdateDrinksStockButton.setEnabled(false);
+        DisplayDrinksStockButton.setEnabled(false);
+        LockDoor.setEnabled(false);
+        UnlockDoor.setEnabled(true);
     }
 
 //        THIS IS FOR RESETTING THE STOCK TO 0 AFTER WE WITHDRAW ALL MONEY FROM THE MAINTAINER'S SIDE
     public MachinerySimulationControlPanelJFrame(int coinsStock10, int coinsStock20, int coinsStock50, int coinsStock1) {
         initComponents();
+
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -582,6 +601,8 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         NewDrinkStock6.setEnabled(true);
         UpdateDrinksStockButton.setEnabled(true);
         DisplayDrinksStockButton.setEnabled(true);
+        UnlockDoor.setEnabled(true);
+        LockDoor.setEnabled(true);
     }//GEN-LAST:event_UnlockDoorActionPerformed
 
     private void DisplayDrinksStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayDrinksStockButtonActionPerformed
@@ -728,6 +749,8 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         NewDrinkStock6.setEnabled(false);
         UpdateDrinksStockButton.setEnabled(false);
         DisplayDrinksStockButton.setEnabled(false);
+        UnlockDoor.setEnabled(false);
+        LockDoor.setEnabled(false);
     }//GEN-LAST:event_LockDoorActionPerformed
 
     /**
