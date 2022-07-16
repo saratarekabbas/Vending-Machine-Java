@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.lang.Math;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -764,25 +765,41 @@ public class MaintainerControlPanelJFrame extends javax.swing.JFrame {
         drinkPrice5 = GetNewDrink5Price.getText();
         drinkPrice6 = GetNewDrink6Price.getText();
 
+        if (JavaChecker.stringIsNull(drinkPrice1) == true || JavaChecker.stringIsNull(drinkPrice2) == true || JavaChecker.stringIsNull(drinkPrice3) == true || JavaChecker.stringIsNull(drinkPrice4) == true || JavaChecker.stringIsNull(drinkPrice5) == true || JavaChecker.stringIsNull(drinkPrice6) == true) {
+            JOptionPane.showMessageDialog(rootPane, "Drinks Price value cannot be empty!");
+        } else if (JavaChecker.isNumeric(drinkPrice1) == false || JavaChecker.isNumeric(drinkPrice2) == false || JavaChecker.isNumeric(drinkPrice3) == false || JavaChecker.isNumeric(drinkPrice4) == false || JavaChecker.isNumeric(drinkPrice5) == false || JavaChecker.isNumeric(drinkPrice6) == false) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid price value! Please only insert a number.");
+        } else if (Double.parseDouble(drinkPrice1) < 0 || Double.parseDouble(drinkPrice2) < 0 || Double.parseDouble(drinkPrice3) < 0 || Double.parseDouble(drinkPrice4) < 0 || Double.parseDouble(drinkPrice5) < 0 || Double.parseDouble(drinkPrice6) < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid price value! Please only insert positive number.");
+        } else {
+//            Round-up
+            drinkPrice1 = String.valueOf(JavaChecker.roundUp(drinkPrice1));
+            drinkPrice2 = String.valueOf(JavaChecker.roundUp(drinkPrice2));
+            drinkPrice3 = String.valueOf(JavaChecker.roundUp(drinkPrice3));
+            drinkPrice4 = String.valueOf(JavaChecker.roundUp(drinkPrice4));
+            drinkPrice5 = String.valueOf(JavaChecker.roundUp(drinkPrice5));
+            drinkPrice6 = String.valueOf(JavaChecker.roundUp(drinkPrice6));
+
 //      FILES
 //      WRITE VALUES INSERTED INTO THE DrinksStock.txt file
-        try {
-            FileWriter myWriter = new FileWriter("DrinksPrice.txt");
-            myWriter.write(
-                    "drinkPrice1 " + drinkPrice1
-                    + "\ndrinkPrice2 " + drinkPrice2
-                    + "\ndrinkPrice3 " + drinkPrice3
-                    + "\ndrinkPrice4 " + drinkPrice4
-                    + "\ndrinkPrice5 " + drinkPrice5
-                    + "\ndrinkPrice6 " + drinkPrice6
-            );
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            try {
+                FileWriter myWriter = new FileWriter("DrinksPrice.txt");
+                myWriter.write(
+                        "drinkPrice1 " + drinkPrice1
+                        + "\ndrinkPrice2 " + drinkPrice2
+                        + "\ndrinkPrice3 " + drinkPrice3
+                        + "\ndrinkPrice4 " + drinkPrice4
+                        + "\ndrinkPrice5 " + drinkPrice5
+                        + "\ndrinkPrice6 " + drinkPrice6
+                );
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(rootPane, "Price Updated Successfully!");
         }
-        JOptionPane.showMessageDialog(rootPane, "Price Updated Successfully!");
     }//GEN-LAST:event_UpdateDrinksPriceActionPerformed
 
     private void GetNewDrink1PriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetNewDrink1PriceActionPerformed
