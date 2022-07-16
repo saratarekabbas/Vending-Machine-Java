@@ -8,11 +8,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-import VMPackage.JavaChecker;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -31,10 +29,10 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
     public String drinksStock5;
     public String drinksStock6;
 
-    public static int coinsStock10;
-    public static int coinsStock20;
-    public static int coinsStock50;
-    public static int coinsStock1;
+    public static String coinsStock10;
+    public static String coinsStock20;
+    public static String coinsStock50;
+    public static String coinsStock1;
 
     //    Set All Coins
     public void setCoin10(int coin10) {
@@ -79,17 +77,7 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
 
 //        THIS IS FOR RESETTING THE STOCK TO 0 AFTER WE WITHDRAW ALL MONEY FROM THE MAINTAINER'S SIDE
     public MachinerySimulationControlPanelJFrame(int coinsStock10, int coinsStock20, int coinsStock50, int coinsStock1) {
-
         initComponents();
-        MachinerySimulationControlPanelJFrame.coinsStock10 = coinsStock10;
-        MachinerySimulationControlPanelJFrame.coinsStock20 = coinsStock20;
-        MachinerySimulationControlPanelJFrame.coinsStock50 = coinsStock50;
-        MachinerySimulationControlPanelJFrame.coinsStock1 = coinsStock1;
-
-        CoinStock10.setText(String.valueOf(MachinerySimulationControlPanelJFrame.coinsStock10));
-        CoinStock20.setText(String.valueOf(MachinerySimulationControlPanelJFrame.coinsStock20));
-        CoinStock50.setText(String.valueOf(MachinerySimulationControlPanelJFrame.coinsStock50));
-        CoinStock10.setText(String.valueOf(MachinerySimulationControlPanelJFrame.coinsStock1));
     }
 
     @SuppressWarnings("unchecked")
@@ -670,28 +658,28 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
 
     private void UpdateCoinsStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCoinsStockButtonActionPerformed
 //    GET TEXT FROM INPUT FIELD
-        coinsStock10 = Integer.parseInt(NewCoinStock1.getText());
-        coinsStock20 = Integer.parseInt(NewCoinStock2.getText());
-        coinsStock50 = Integer.parseInt(NewCoinStock3.getText());
-        coinsStock1 = Integer.parseInt(NewCoinStock4.getText());
+//        coinsStock10 = Integer.parseInt(NewCoinStock1.getText());
+//        coinsStock20 = Integer.parseInt(NewCoinStock2.getText());
+//        coinsStock50 = Integer.parseInt(NewCoinStock3.getText());
+//        coinsStock1 = Integer.parseInt(NewCoinStock4.getText());
 
 //      FILES
 //      WRITE VALUES INSERTED INTO THE DrinksStock.txt file
-        try {
-            FileWriter myWriter = new FileWriter("CoinStock.txt");
-            myWriter.write(
-                    "coinsStock10 " + coinsStock10
-                    + "\ncoinsStock20 " + coinsStock20
-                    + "\ncoinsStock50 " + coinsStock50
-                    + "\ncoinsStock-1 " + coinsStock1
-            );
-            myWriter.close();
-            System.out.println("Successfully wrote to CoinStock.txt file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        JOptionPane.showMessageDialog(rootPane, "Coins Stock updated successfully!");
+//        try {
+//            FileWriter myWriter = new FileWriter("CoinStock.txt");
+//            myWriter.write(
+//                    "coinsStock10 " + coinsStock10
+//                    + "\ncoinsStock20 " + coinsStock20
+//                    + "\ncoinsStock50 " + coinsStock50
+//                    + "\ncoinsStock-1 " + coinsStock1
+//            );
+//            myWriter.close();
+//            System.out.println("Successfully wrote to CoinStock.txt file.");
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//        JOptionPane.showMessageDialog(rootPane, "Coins Stock updated successfully!");
     }//GEN-LAST:event_UpdateCoinsStockButtonActionPerformed
 
     /**
