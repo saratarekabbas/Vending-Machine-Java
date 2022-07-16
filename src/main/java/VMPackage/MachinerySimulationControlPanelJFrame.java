@@ -606,7 +606,7 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
         } else if (Integer.valueOf(drinksStock1) < 0 || Integer.valueOf(drinksStock2) < 0 || Integer.valueOf(drinksStock3) < 0 || Integer.valueOf(drinksStock4) < 0 || Integer.valueOf(drinksStock5) < 0 || Integer.valueOf(drinksStock6) < 0) {
             JOptionPane.showMessageDialog(rootPane, "Invalid stock value! Please only insert positive number [0-20].");
 
-        } else if ((Integer.valueOf(drinksStock1)> 20 ) || Integer.valueOf(drinksStock2) > 20 || Integer.valueOf(drinksStock3) > 20 || Integer.valueOf(drinksStock4) > 20 || Integer.valueOf(drinksStock5) > 20 || Integer.valueOf(drinksStock6) > 20) {
+        } else if ((Integer.valueOf(drinksStock1) > 20) || Integer.valueOf(drinksStock2) > 20 || Integer.valueOf(drinksStock3) > 20 || Integer.valueOf(drinksStock4) > 20 || Integer.valueOf(drinksStock5) > 20 || Integer.valueOf(drinksStock6) > 20) {
             JOptionPane.showMessageDialog(rootPane, "Drinks stock cannot exceed 20!");
         } else {
             try {
@@ -657,29 +657,36 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DisplayCoinsStockButtonActionPerformed
 
     private void UpdateCoinsStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCoinsStockButtonActionPerformed
-//    GET TEXT FROM INPUT FIELD
-//        coinsStock10 = Integer.parseInt(NewCoinStock1.getText());
-//        coinsStock20 = Integer.parseInt(NewCoinStock2.getText());
-//        coinsStock50 = Integer.parseInt(NewCoinStock3.getText());
-//        coinsStock1 = Integer.parseInt(NewCoinStock4.getText());
+        coinsStock10 = NewCoinStock1.getText();
+        coinsStock20 = NewCoinStock2.getText();
+        coinsStock50 = NewCoinStock3.getText();
+        coinsStock1 = NewCoinStock4.getText();
 
-//      FILES
-//      WRITE VALUES INSERTED INTO THE DrinksStock.txt file
-//        try {
-//            FileWriter myWriter = new FileWriter("CoinStock.txt");
-//            myWriter.write(
-//                    "coinsStock10 " + coinsStock10
-//                    + "\ncoinsStock20 " + coinsStock20
-//                    + "\ncoinsStock50 " + coinsStock50
-//                    + "\ncoinsStock-1 " + coinsStock1
-//            );
-//            myWriter.close();
-//            System.out.println("Successfully wrote to CoinStock.txt file.");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
-//        JOptionPane.showMessageDialog(rootPane, "Coins Stock updated successfully!");
+        if (JavaChecker.stringIsNull(coinsStock10) == true || JavaChecker.stringIsNull(coinsStock20) == true || JavaChecker.stringIsNull(coinsStock50) == true || JavaChecker.stringIsNull(coinsStock1)) {
+            JOptionPane.showMessageDialog(rootPane, "Coin Stock value cannot be empty!");
+        } else if (JavaChecker.isWhole(coinsStock10) == false || JavaChecker.isWhole(coinsStock20) == false || JavaChecker.isWhole(coinsStock50) == false || JavaChecker.isWhole(coinsStock1) == false) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid stock value! Please only insert whole number [0-20].");
+        } else if (Integer.valueOf(coinsStock10) < 0 || Integer.valueOf(coinsStock20) < 0 || Integer.valueOf(coinsStock50) < 0 || Integer.valueOf(coinsStock1) < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid stock value! Please only insert positive number [0-20].");
+        } else if (Integer.valueOf(coinsStock10) > 20 || Integer.valueOf(coinsStock20) > 20 || Integer.valueOf(coinsStock50) > 20 || Integer.valueOf(coinsStock1) > 20) {
+            JOptionPane.showMessageDialog(rootPane, "Coins stock cannot exceed 20!");
+        } else {
+            try {
+                FileWriter myWriter = new FileWriter("CoinStock.txt");
+                myWriter.write(
+                        "coinsStock10 " + coinsStock10
+                        + "\ncoinsStock20 " + coinsStock20
+                        + "\ncoinsStock50 " + coinsStock50
+                        + "\ncoinsStock-1 " + coinsStock1
+                );
+                myWriter.close();
+                System.out.println("Successfully wrote to CoinStock.txt file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(rootPane, "Coins Stock updated successfully!");
+        }
     }//GEN-LAST:event_UpdateCoinsStockButtonActionPerformed
 
     /**
