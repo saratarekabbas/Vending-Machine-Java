@@ -1,4 +1,0 @@
-coinsStock10 102
-coinsStock20 101
-coinsStock50 101
-coinsStock-1 105

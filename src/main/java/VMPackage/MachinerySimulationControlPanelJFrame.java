@@ -24,12 +24,12 @@ import VMPackage.JavaChecker;
  */
 public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
 
-    public int drinksStock1;
-    public int drinksStock2;
-    public int drinksStock3;
-    public int drinksStock4;
-    public int drinksStock5;
-    public int drinksStock6;
+    public String drinksStock1;
+    public String drinksStock2;
+    public String drinksStock3;
+    public String drinksStock4;
+    public String drinksStock5;
+    public String drinksStock6;
 
     public static int coinsStock10;
     public static int coinsStock20;
@@ -604,35 +604,41 @@ public class MachinerySimulationControlPanelJFrame extends javax.swing.JFrame {
 
     private void UpdateDrinksStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateDrinksStockButtonActionPerformed
 //      GET TEXT FROM INPUT FIELD
-        drinksStock1 = Integer.parseInt(NewDrinkStock1.getText());
-        drinksStock2 = Integer.parseInt(NewDrinkStock2.getText());
-        drinksStock3 = Integer.parseInt(NewDrinkStock3.getText());
-        drinksStock4 = Integer.parseInt(NewDrinkStock4.getText());
-        drinksStock5 = Integer.parseInt(NewDrinkStock5.getText());
-        drinksStock6 = Integer.parseInt(NewDrinkStock6.getText());
+        drinksStock1 = NewDrinkStock1.getText();
+        drinksStock2 = NewDrinkStock2.getText();
+        drinksStock3 = NewDrinkStock3.getText();
+        drinksStock4 = NewDrinkStock4.getText();
+        drinksStock5 = NewDrinkStock5.getText();
+        drinksStock6 = NewDrinkStock6.getText();
 
-//        if (JavaChecker.isWhole(NewDrinkStock1.getText()) == true) {
-        //            if (drinksStock1 >= 0 && drinksStock1 <= 20) {
-        try {
-            FileWriter myWriter = new FileWriter("DrinksStock.txt");
-            myWriter.write(
-                    "drinksStock1 " + drinksStock1
-                    + "\ndrinksStock2 " + drinksStock2
-                    + "\ndrinksStock3 " + drinksStock3
-                    + "\ndrinksStock4 " + drinksStock4
-                    + "\ndrinksStock5 " + drinksStock5
-                    + "\ndrinksStock6 " + drinksStock6
-            );
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        if (JavaChecker.stringIsNull(drinksStock1) == true || JavaChecker.stringIsNull(drinksStock2) == true || JavaChecker.stringIsNull(drinksStock3) == true || JavaChecker.stringIsNull(drinksStock4) == true || JavaChecker.stringIsNull(drinksStock5) == true || JavaChecker.stringIsNull(drinksStock6) == true) {
+            JOptionPane.showMessageDialog(rootPane, "Drinks Stock value cannot be empty!");
+        } else if (JavaChecker.isWhole(drinksStock1) == false || JavaChecker.isWhole(drinksStock2) == false || JavaChecker.isWhole(drinksStock3) == false || JavaChecker.isWhole(drinksStock4) == false || JavaChecker.isWhole(drinksStock5) == false || JavaChecker.isWhole(drinksStock6) == false) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid stock value! Please only insert whole number [0-20].");
+        } else if (Integer.valueOf(drinksStock1) < 0 || Integer.valueOf(drinksStock2) < 0 || Integer.valueOf(drinksStock3) < 0 || Integer.valueOf(drinksStock4) < 0 || Integer.valueOf(drinksStock5) < 0 || Integer.valueOf(drinksStock6) < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Invalid stock value! Please only insert positive number [0-20].");
+
+        } else if ((Integer.valueOf(drinksStock1)> 20 ) || Integer.valueOf(drinksStock2) > 20 || Integer.valueOf(drinksStock3) > 20 || Integer.valueOf(drinksStock4) > 20 || Integer.valueOf(drinksStock5) > 20 || Integer.valueOf(drinksStock6) > 20) {
+            JOptionPane.showMessageDialog(rootPane, "Drinks stock cannot exceed 20!");
+        } else {
+            try {
+                FileWriter myWriter = new FileWriter("DrinksStock.txt");
+                myWriter.write(
+                        "drinksStock1 " + drinksStock1
+                        + "\ndrinksStock2 " + drinksStock2
+                        + "\ndrinksStock3 " + drinksStock3
+                        + "\ndrinksStock4 " + drinksStock4
+                        + "\ndrinksStock5 " + drinksStock5
+                        + "\ndrinksStock6 " + drinksStock6
+                );
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(rootPane, "Drinks Stock updated successfully!");
         }
-        JOptionPane.showMessageDialog(rootPane, "Drinks Stock updated successfully!");
-//            } else {
-//                JOptionPane.showMessageDialog(rootPane, "Please insert a valid stock value: 0->20 only");
-//            }
     }//GEN-LAST:event_UpdateDrinksStockButtonActionPerformed
 
     private void DisplayCoinsStockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayCoinsStockButtonActionPerformed

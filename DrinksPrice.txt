@@ -1,6 +1,0 @@
-drinkPrice1 1
-drinkPrice2 1
-drinkPrice3 1
-drinkPrice4 1
-drinkPrice5 1
-drinkPrice6 1
