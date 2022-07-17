@@ -707,6 +707,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     drinkName + " drink has been dispensed.");
             purchasedDrink = null;
             CollectDrink2.setEnabled(false);
+            unselectAllDrinks();
+            totalInsertedCoins = 0;
+            insertedCoin = 0;
+            CoinsInput.setText("0.00");
+            TotalInserted.setText("0.00");
         }
     }//GEN-LAST:event_CollectDrink2ActionPerformed
 
@@ -753,9 +758,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     purchasedDrink = selectedDrink;
                     getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
                     enableButtons();
-                    unselectAllDrinks();
-                    totalInsertedCoins = 0;
-                    insertedCoin = 0;
+//                    unselectAllDrinks();
+//                    totalInsertedCoins = 0;
+//                    insertedCoin = 0;
                     CollectDrink2.setEnabled(true);
 
                     if (isSufficient == 0) { // No change needed
@@ -800,8 +805,8 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 //                        System.out.println("==Sum of change: ==");
 //                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
                             // RESET ALL
-                            CoinsInput.setText("0.00");
-                            TotalInserted.setText("0.00");
+//                            CoinsInput.setText("0.00");
+//                            TotalInserted.setText("0.00");
 //                        HOHO: CoinsChange.setText(String.valueOf((double) Math.round(isSufficient * 100) / 100));
 //                        new CustomerControlPanelJFrame().enableButtons();
                         }
