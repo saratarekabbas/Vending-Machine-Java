@@ -45,6 +45,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     public static String VMhasChange;
     public static String purchasedDrink;
+    public double changeReturned;
 
 //    stock & change part
     Double remainder = null;
@@ -160,6 +161,11 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
         InvalidCoins.setForeground(Color.GRAY);
         NoChangeAvailable.setForeground(Color.GRAY);
+
+        insertedCoin = 0; // currently inserted coin by the user in an active transaction
+        totalInsertedCoins = 0;
+        VMhasChange = null;
+        purchasedDrink = null;
     }
 
     @SuppressWarnings("unchecked")
@@ -664,18 +670,19 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     private void CollectCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectCashActionPerformed
         if ("true".equals(VMhasChange)) {
             JOptionPane.showMessageDialog(rootPane,
-                    "Change of " + ((double) Math.round(remainder * 100) / 100) + " has been collected.");
-            totalInsertedCoins = 0;
+                    "Change of " + ((double) Math.round(changeReturned * 100) / 100) + " has been collected.");
             remainder = null;
 
             NoChangeAvailable.setForeground(Color.GRAY);
         } else if ("false".equals(VMhasChange)) {
             JOptionPane.showMessageDialog(rootPane,
                     "Sorry, the vending machine does not have change.");
+            remainder = null;
             NoChangeAvailable.setForeground(Color.RED);
         }
         CollectCash.setEnabled(false);
         VMhasChange = null;
+        changeReturned = 0;
     }//GEN-LAST:event_CollectCashActionPerformed
 
     private void CollectDrink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollectDrink2ActionPerformed
@@ -697,7 +704,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
         }
         if (purchasedDrink != null) {
             JOptionPane.showMessageDialog(rootPane,
-                    "Drink" + drinkName + " has been dispensed.");
+                    drinkName + " drink has been dispensed.");
             purchasedDrink = null;
             CollectDrink2.setEnabled(false);
         }
@@ -748,6 +755,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     enableButtons();
                     unselectAllDrinks();
                     totalInsertedCoins = 0;
+                    insertedCoin = 0;
                     CollectDrink2.setEnabled(true);
 
                     if (isSufficient == 0) { // No change needed
@@ -758,7 +766,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     } else if (isSufficient > 0) { //Change needed
                         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
                         CollectCash.setEnabled(true);
-//                        checkiing VM Stock
+//                        checking VM Stock
                         if (coinStock1 + coinStock20 + coinStock10 + coinStock50 < isSufficient) { //if no change in VM
                             JOptionPane.showMessageDialog(rootPane,
                                     "Item purchased successfully! Please, collect the dispensed drink.");
@@ -770,7 +778,9 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                             VMhasChange = "true";
                             NoChangeAvailable.setForeground(Color.GRAY);
                             remainder = isSufficient;
+                            changeReturned = isSufficient;
                             List<Double> change = giveChange(isSufficient);
+//                            changeReturned = Math.round(isSufficient * 100) / 100);
                             for (int i = 0; i < change.size(); i++) {
                                 System.out.println(change.get(i));
                                 if (change.get(i) == 1.0) {
@@ -791,6 +801,7 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 //                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
                             // RESET ALL
                             CoinsInput.setText("0.00");
+                            TotalInserted.setText("0.00");
 //                        HOHO: CoinsChange.setText(String.valueOf((double) Math.round(isSufficient * 100) / 100));
 //                        new CustomerControlPanelJFrame().enableButtons();
                         }
@@ -872,8 +883,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
 
     private void InsertActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_InsertActionPerformed
 //      MESH ELMAFROUD N7OTOHOM FEL STOCK TALAMA LESSA MASHTARASH 3ASHAN MOMKEN MAYESHTEREESH FEL AKHER
-
-//        insertedCoin = Double.valueOf(CoinsInput.getText());
         String updateStock = null;
 
         switch (CoinsInput.getText()) {
@@ -938,32 +947,6 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 InvalidCoins.setForeground(Color.RED);
                 break;
         }
-
-//        if (insertedCoin == 0.1) {
-//            InvalidCoins.setEnabled(true);
-//            InvalidCoins.setForeground(Color.GRAY);
-//            totalInsertedCoins += 0.1;
-//            updateStock = "coinsStock10";
-//        } else if (insertedCoin == 0.2) {
-//            InvalidCoins.setEnabled(true);
-//            InvalidCoins.setForeground(Color.GRAY);
-//            updateStock = "coinsStock20";
-//            totalInsertedCoins += 0.2;
-//        } else if (insertedCoin == 0.5) {
-//            InvalidCoins.setEnabled(true);
-//            InvalidCoins.setForeground(Color.GRAY);
-//            updateStock = "coinsStock50";
-//            totalInsertedCoins += 0.5;
-//        } else if (insertedCoin == 1) {
-//            InvalidCoins.setEnabled(true);
-//            InvalidCoins.setForeground(Color.GRAY);
-//            updateStock = "coinsStock-1";
-//            totalInsertedCoins += 1;
-//        } else {
-//            JOptionPane.showMessageDialog(rootPane, "Please, insert valid money (0.10 / 0.20 / 0.50 / 1)");
-//            InvalidCoins.setEnabled(true);
-//            InvalidCoins.setForeground(Color.RED);
-//        }
 
 //        HENA DA ELLY ELMAFROUD YE7SAL FEL AKHER MESH HENA
         if (updateStock == "coinsStock10" || updateStock == "coinsStock20" || updateStock == "coinsStock50"

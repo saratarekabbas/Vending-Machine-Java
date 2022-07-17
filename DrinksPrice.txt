@@ -1,6 +1,6 @@
-drinkPrice1 10.0
-drinkPrice2 1.1
-drinkPrice3 1.2
-drinkPrice4 1.2
-drinkPrice5 1.7
-drinkPrice6 1.6
+drinkPrice1 1.0
+drinkPrice2 1.6
+drinkPrice3 2.1
+drinkPrice4 2.6
+drinkPrice5 2.0
+drinkPrice6 1.0
