@@ -3,4 +3,4 @@ drinksStock2 4
 drinksStock3 0
 drinksStock4 6
 drinksStock5 4
-drinksStock6 12
+drinksStock6 2

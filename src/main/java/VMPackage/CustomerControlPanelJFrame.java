@@ -61,6 +61,21 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
     public List<Double> giveChange(Double remainder) {
         List<Double> outPut = new ArrayList<>();
         List<Double> bills = List.of(1.00, 0.5, 0.20, 0.10);
+        
+        getCoinsStock(FileHandler.readFile("CoinStock.txt"));
+        if(coinStock10 == 0){
+            bills.remove(3);
+        }
+        if(coinStock20 == 0){
+            bills.remove(2);
+        }
+        if(coinStock50 == 0){
+            bills.remove(1);
+        }
+        if(coinStock1 == 0){
+            bills.remove(0);
+        }
+        
         bills.stream().forEach(e -> extracted((double) Math.round(this.remainder * 100) / 100, e, outPut));
         return outPut;
     }
@@ -758,15 +773,10 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                     purchasedDrink = selectedDrink;
                     getDrinksStock(FileHandler.readFile("DrinksStock.txt"));
                     enableButtons();
-//                    unselectAllDrinks();
-//                    totalInsertedCoins = 0;
-//                    insertedCoin = 0;
                     CollectDrink2.setEnabled(true);
-
                     if (isSufficient == 0) { // No change needed
                         JOptionPane.showMessageDialog(rootPane,
                                 "Item purchased successfully! Please, collect the dispensed drink.");
-                        TotalInserted.setText("0.00");
                         remainder = null;
                     } else if (isSufficient > 0) { //Change needed
                         getCoinsStock(FileHandler.readFile("CoinStock.txt"));
@@ -802,13 +812,8 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                                     FileHandler.reduce("CoinStock.txt", "coinsStock10", 1);
                                 }
                             }
-//                        System.out.println("==Sum of change: ==");
-//                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
-                            // RESET ALL
-//                            CoinsInput.setText("0.00");
-//                            TotalInserted.setText("0.00");
-//                        HOHO: CoinsChange.setText(String.valueOf((double) Math.round(isSufficient * 100) / 100));
-//                        new CustomerControlPanelJFrame().enableButtons();
+                        System.out.println("==Sum of change: ==");
+                        System.out.println(change.stream().reduce(0.0, (subtotal, element) -> subtotal + element));
                         }
                     }
                 }
@@ -953,21 +958,14 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 break;
         }
 
-//        HENA DA ELLY ELMAFROUD YE7SAL FEL AKHER MESH HENA
         if (updateStock == "coinsStock10" || updateStock == "coinsStock20" || updateStock == "coinsStock50"
                 || updateStock == "coinsStock-1") {
             try {
                 File originalFile = new File("CoinStock.txt");
                 BufferedReader br = new BufferedReader(new FileReader(originalFile));
-
-                // Construct the new file that will later be renamed to the original
-                // filename.
                 File tempFile = new File("tempfile.txt");
                 PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-
                 String line = null;
-                // Read from the original file and write to the new
-                // unless content matches data to be removed
                 while ((line = br.readLine()) != null) {
                     if (line.contains(updateStock)) {
                         String strCurrentStock = line.substring(line.lastIndexOf(" "), line.length());
@@ -982,28 +980,20 @@ public class CustomerControlPanelJFrame extends javax.swing.JFrame {
                 }
                 pw.close();
                 br.close();
-
-                // Delete the original file
                 if (!originalFile.delete()) {
                     System.out.println("Could not delete file");
                     return;
                 }
-
-                // Rename the new file to the filename the original file had.
                 if (!tempFile.renameTo(originalFile)) {
                     System.out.println("Could not rename file");
                 }
-
             } catch (IOException e) {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
         }
-
         totalInsertedCoins = (double) (Math.round(totalInsertedCoins * 100.0) / 100.0);
-
         TotalInserted.setText(String.valueOf(totalInsertedCoins));
-
         insertedCoin = 0.00;
         CoinsInput.setText(String.valueOf(insertedCoin));
     }// GEN-LAST:event_InsertActionPerformed
